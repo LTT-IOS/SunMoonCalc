@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3206FD19172635C500BF50CE /* MoonCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3206FD16172635C500BF50CE /* MoonCoordinate.m */; };
+		3206FD1A172635C500BF50CE /* MoonPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3206FD18172635C500BF50CE /* MoonPosition.m */; };
+		320AFF8C1716B1D6006AD9FB /* SunRise.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AFF8A1716B1D6006AD9FB /* SunRise.png */; };
+		320AFF8D1716B1D6006AD9FB /* SunSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AFF8B1716B1D6006AD9FB /* SunSet.png */; };
+		321253681725253A0096ABC7 /* SunCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 321253651725253A0096ABC7 /* SunCoordinate.m */; };
+		321253691725253A0096ABC7 /* SunPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 321253671725253A0096ABC7 /* SunPosition.m */; };
+		322823BC171D360700211081 /* icon_current_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B3171D360700211081 /* icon_current_location@2x.png */; };
+		322823BD171D360700211081 /* icon_current_moon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B4171D360700211081 /* icon_current_moon@2x.png */; };
+		322823BE171D360700211081 /* icon_current_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B5171D360700211081 /* icon_current_sun@2x.png */; };
+		322823BF171D360700211081 /* icon_moon_rise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B6171D360700211081 /* icon_moon_rise@2x.png */; };
+		322823C0171D360700211081 /* icon_moon_set@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B7171D360700211081 /* icon_moon_set@2x.png */; };
+		322823C1171D360700211081 /* icon_pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B8171D360700211081 /* icon_pin@2x.png */; };
+		322823C2171D360700211081 /* icon_sun_rise.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B9171D360700211081 /* icon_sun_rise.png */; };
+		322823C3171D360700211081 /* icon_sun_set@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823BA171D360700211081 /* icon_sun_set@2x.png */; };
+		322823C4171D360700211081 /* icon_you@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823BB171D360700211081 /* icon_you@2x.png */; };
+		3254B6211715DA2800DBAEAD /* MoonSunCalcGobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */; };
+		32840A3F17155BEA00DDE99B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A3E17155BEA00DDE99B /* UIKit.framework */; };
+		32840A4117155BEA00DDE99B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A4017155BEA00DDE99B /* Foundation.framework */; };
+		32840A4317155BEA00DDE99B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A4217155BEA00DDE99B /* CoreGraphics.framework */; };
+		32840A4917155BEA00DDE99B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32840A4717155BEA00DDE99B /* InfoPlist.strings */; };
+		32840A4B17155BEA00DDE99B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A4A17155BEA00DDE99B /* main.m */; };
+		32840A4F17155BEA00DDE99B /* MoonSunCalcAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A4E17155BEA00DDE99B /* MoonSunCalcAppDelegate.m */; };
+		32840A5117155BEA00DDE99B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5017155BEA00DDE99B /* Default.png */; };
+		32840A5317155BEA00DDE99B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5217155BEA00DDE99B /* Default@2x.png */; };
+		32840A5517155BEA00DDE99B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5417155BEA00DDE99B /* Default-568h@2x.png */; };
+		32840A5817155BEA00DDE99B /* MoonSunCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A5717155BEA00DDE99B /* MoonSunCalcViewController.m */; };
+		32840A5B17155BEA00DDE99B /* MoonSunCalcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5917155BEA00DDE99B /* MoonSunCalcViewController.xib */; };
+		32840A6B17155D2200DDE99B /* PositionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A6A17155D2200DDE99B /* PositionEntity.m */; };
+		32840A70171562A000DDE99B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A6F171562A000DDE99B /* MapKit.framework */; };
+		32840A771715649100DDE99B /* AnnotationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A761715649100DDE99B /* AnnotationPoint.m */; };
+		32840A7A171567D700DDE99B /* AnnotationPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A79171567D700DDE99B /* AnnotationPointView.m */; };
+		32840A8017156C6900DDE99B /* UserLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7B17156C6900DDE99B /* UserLocation.png */; };
+		32840A8117156C6900DDE99B /* MoonRise.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7C17156C6900DDE99B /* MoonRise.png */; };
+		32840A8217156C6900DDE99B /* MoonSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7D17156C6900DDE99B /* MoonSet.png */; };
+		32840A8317156C6900DDE99B /* mylocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7E17156C6900DDE99B /* mylocation.png */; };
+		32840A871715723A00DDE99B /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A861715723A00DDE99B /* MapView.m */; };
+		32840A89171574FD00DDE99B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A88171574FC00DDE99B /* CoreLocation.framework */; };
+		32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE4DDE171E36AB006E8A05 /* ShareLocation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3206FD15172635C500BF50CE /* MoonCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonCoordinate.h; sourceTree = "<group>"; };
+		3206FD16172635C500BF50CE /* MoonCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonCoordinate.m; sourceTree = "<group>"; };
+		3206FD17172635C500BF50CE /* MoonPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonPosition.h; sourceTree = "<group>"; };
+		3206FD18172635C500BF50CE /* MoonPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonPosition.m; sourceTree = "<group>"; };
+		320AFF8A1716B1D6006AD9FB /* SunRise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SunRise.png; sourceTree = "<group>"; };
+		320AFF8B1716B1D6006AD9FB /* SunSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SunSet.png; sourceTree = "<group>"; };
+		321253641725253A0096ABC7 /* SunCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunCoordinate.h; sourceTree = "<group>"; };
+		321253651725253A0096ABC7 /* SunCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunCoordinate.m; sourceTree = "<group>"; };
+		321253661725253A0096ABC7 /* SunPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunPosition.h; sourceTree = "<group>"; };
+		321253671725253A0096ABC7 /* SunPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunPosition.m; sourceTree = "<group>"; };
+		322823B3171D360700211081 /* icon_current_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_current_location@2x.png"; sourceTree = "<group>"; };
+		322823B4171D360700211081 /* icon_current_moon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_current_moon@2x.png"; sourceTree = "<group>"; };
+		322823B5171D360700211081 /* icon_current_sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_current_sun@2x.png"; sourceTree = "<group>"; };
+		322823B6171D360700211081 /* icon_moon_rise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_moon_rise@2x.png"; sourceTree = "<group>"; };
+		322823B7171D360700211081 /* icon_moon_set@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_moon_set@2x.png"; sourceTree = "<group>"; };
+		322823B8171D360700211081 /* icon_pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pin@2x.png"; sourceTree = "<group>"; };
+		322823B9171D360700211081 /* icon_sun_rise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_sun_rise.png; sourceTree = "<group>"; };
+		322823BA171D360700211081 /* icon_sun_set@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sun_set@2x.png"; sourceTree = "<group>"; };
+		322823BB171D360700211081 /* icon_you@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_you@2x.png"; sourceTree = "<group>"; };
+		3254B61F1715DA2800DBAEAD /* MoonSunCalcGobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcGobal.h; sourceTree = "<group>"; };
+		3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonSunCalcGobal.m; sourceTree = "<group>"; };
+		32840A3A17155BEA00DDE99B /* MoonAndSunCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoonAndSunCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32840A3E17155BEA00DDE99B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32840A4017155BEA00DDE99B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		32840A4217155BEA00DDE99B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32840A4617155BEA00DDE99B /* MoonAndSunCalc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonAndSunCalc-Info.plist"; sourceTree = "<group>"; };
+		32840A4817155BEA00DDE99B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32840A4A17155BEA00DDE99B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32840A4C17155BEA00DDE99B /* MoonAndSunCalc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoonAndSunCalc-Prefix.pch"; sourceTree = "<group>"; };
+		32840A4D17155BEA00DDE99B /* MoonSunCalcAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoonSunCalcAppDelegate.h; path = MoonAndSunCalc/MoonSunCalcAppDelegate.h; sourceTree = "<group>"; };
+		32840A4E17155BEA00DDE99B /* MoonSunCalcAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoonSunCalcAppDelegate.m; path = MoonAndSunCalc/MoonSunCalcAppDelegate.m; sourceTree = "<group>"; };
+		32840A5017155BEA00DDE99B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = MoonAndSunCalc/Default.png; sourceTree = "<group>"; };
+		32840A5217155BEA00DDE99B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "MoonAndSunCalc/Default@2x.png"; sourceTree = "<group>"; };
+		32840A5417155BEA00DDE99B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "MoonAndSunCalc/Default-568h@2x.png"; sourceTree = "<group>"; };
+		32840A5617155BEA00DDE99B /* MoonSunCalcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcViewController.h; sourceTree = "<group>"; };
+		32840A5717155BEA00DDE99B /* MoonSunCalcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonSunCalcViewController.m; sourceTree = "<group>"; };
+		32840A5A17155BEA00DDE99B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MoonSunCalcViewController.xib; sourceTree = "<group>"; };
+		32840A6917155D2200DDE99B /* PositionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionEntity.h; sourceTree = "<group>"; };
+		32840A6A17155D2200DDE99B /* PositionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionEntity.m; sourceTree = "<group>"; };
+		32840A6F171562A000DDE99B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		32840A751715649100DDE99B /* AnnotationPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationPoint.h; sourceTree = "<group>"; };
+		32840A761715649100DDE99B /* AnnotationPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPoint.m; sourceTree = "<group>"; };
+		32840A78171567D700DDE99B /* AnnotationPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationPointView.h; sourceTree = "<group>"; };
+		32840A79171567D700DDE99B /* AnnotationPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPointView.m; sourceTree = "<group>"; };
+		32840A7B17156C6900DDE99B /* UserLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserLocation.png; sourceTree = "<group>"; };
+		32840A7C17156C6900DDE99B /* MoonRise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoonRise.png; sourceTree = "<group>"; };
+		32840A7D17156C6900DDE99B /* MoonSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoonSet.png; sourceTree = "<group>"; };
+		32840A7E17156C6900DDE99B /* mylocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mylocation.png; sourceTree = "<group>"; };
+		32840A851715723A00DDE99B /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		32840A861715723A00DDE99B /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		32840A88171574FC00DDE99B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		32FE4DDD171E36AB006E8A05 /* ShareLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLocation.h; sourceTree = "<group>"; };
+		32FE4DDE171E36AB006E8A05 /* ShareLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLocation.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32840A3717155BEA00DDE99B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32840A89171574FD00DDE99B /* CoreLocation.framework in Frameworks */,
+				32840A70171562A000DDE99B /* MapKit.framework in Frameworks */,
+				32840A3F17155BEA00DDE99B /* UIKit.framework in Frameworks */,
+				32840A4117155BEA00DDE99B /* Foundation.framework in Frameworks */,
+				32840A4317155BEA00DDE99B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32840A2F17155BEA00DDE99B = {
+			isa = PBXGroup;
+			children = (
+				32840A4D17155BEA00DDE99B /* MoonSunCalcAppDelegate.h */,
+				32840A4E17155BEA00DDE99B /* MoonSunCalcAppDelegate.m */,
+				32840A6517155C4E00DDE99B /* Classes */,
+				32840A71171562DB00DDE99B /* Resources */,
+				32840A3D17155BEA00DDE99B /* Frameworks */,
+				32840A3B17155BEA00DDE99B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32840A3B17155BEA00DDE99B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32840A3A17155BEA00DDE99B /* MoonAndSunCalc.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32840A3D17155BEA00DDE99B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32840A88171574FC00DDE99B /* CoreLocation.framework */,
+				32840A6F171562A000DDE99B /* MapKit.framework */,
+				32840A3E17155BEA00DDE99B /* UIKit.framework */,
+				32840A4017155BEA00DDE99B /* Foundation.framework */,
+				32840A4217155BEA00DDE99B /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32840A4417155BEA00DDE99B /* Controllers Model */ = {
+			isa = PBXGroup;
+			children = (
+				32840A5617155BEA00DDE99B /* MoonSunCalcViewController.h */,
+				32840A5717155BEA00DDE99B /* MoonSunCalcViewController.m */,
+			);
+			name = "Controllers Model";
+			path = MoonAndSunCalc;
+			sourceTree = "<group>";
+		};
+		32840A4517155BEA00DDE99B /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				32840A4617155BEA00DDE99B /* MoonAndSunCalc-Info.plist */,
+				32840A4A17155BEA00DDE99B /* main.m */,
+				32840A4C17155BEA00DDE99B /* MoonAndSunCalc-Prefix.pch */,
+			);
+			name = Others;
+			path = MoonAndSunCalc;
+			sourceTree = "<group>";
+		};
+		32840A6517155C4E00DDE99B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				32840A6617155C9100DDE99B /* Common */,
+				32840A4417155BEA00DDE99B /* Controllers Model */,
+				32840A6817155CB900DDE99B /* View Model */,
+				32840A6717155C9E00DDE99B /* Entity Model */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		32840A6617155C9100DDE99B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3254B61F1715DA2800DBAEAD /* MoonSunCalcGobal.h */,
+				3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */,
+				32FE4DDD171E36AB006E8A05 /* ShareLocation.h */,
+				32FE4DDE171E36AB006E8A05 /* ShareLocation.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		32840A6717155C9E00DDE99B /* Entity Model */ = {
+			isa = PBXGroup;
+			children = (
+				32840A6917155D2200DDE99B /* PositionEntity.h */,
+				32840A6A17155D2200DDE99B /* PositionEntity.m */,
+				32840A751715649100DDE99B /* AnnotationPoint.h */,
+				32840A761715649100DDE99B /* AnnotationPoint.m */,
+			);
+			name = "Entity Model";
+			sourceTree = "<group>";
+		};
+		32840A6817155CB900DDE99B /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				3206FD15172635C500BF50CE /* MoonCoordinate.h */,
+				3206FD16172635C500BF50CE /* MoonCoordinate.m */,
+				3206FD17172635C500BF50CE /* MoonPosition.h */,
+				3206FD18172635C500BF50CE /* MoonPosition.m */,
+				321253641725253A0096ABC7 /* SunCoordinate.h */,
+				321253651725253A0096ABC7 /* SunCoordinate.m */,
+				321253661725253A0096ABC7 /* SunPosition.h */,
+				321253671725253A0096ABC7 /* SunPosition.m */,
+				32840A851715723A00DDE99B /* MapView.h */,
+				32840A861715723A00DDE99B /* MapView.m */,
+				32840A78171567D700DDE99B /* AnnotationPointView.h */,
+				32840A79171567D700DDE99B /* AnnotationPointView.m */,
+			);
+			name = "View Model";
+			sourceTree = "<group>";
+		};
+		32840A71171562DB00DDE99B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32840A721715635D00DDE99B /* Images */,
+				32840A74171563BE00DDE99B /* Nibs */,
+				32840A731715637600DDE99B /* Multi Language */,
+				32840A4517155BEA00DDE99B /* Others */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		32840A721715635D00DDE99B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				322823B3171D360700211081 /* icon_current_location@2x.png */,
+				322823B4171D360700211081 /* icon_current_moon@2x.png */,
+				322823B5171D360700211081 /* icon_current_sun@2x.png */,
+				322823B6171D360700211081 /* icon_moon_rise@2x.png */,
+				322823B7171D360700211081 /* icon_moon_set@2x.png */,
+				322823B8171D360700211081 /* icon_pin@2x.png */,
+				322823B9171D360700211081 /* icon_sun_rise.png */,
+				322823BA171D360700211081 /* icon_sun_set@2x.png */,
+				322823BB171D360700211081 /* icon_you@2x.png */,
+				320AFF8A1716B1D6006AD9FB /* SunRise.png */,
+				320AFF8B1716B1D6006AD9FB /* SunSet.png */,
+				32840A7B17156C6900DDE99B /* UserLocation.png */,
+				32840A7C17156C6900DDE99B /* MoonRise.png */,
+				32840A7D17156C6900DDE99B /* MoonSet.png */,
+				32840A7E17156C6900DDE99B /* mylocation.png */,
+				32840A5017155BEA00DDE99B /* Default.png */,
+				32840A5217155BEA00DDE99B /* Default@2x.png */,
+				32840A5417155BEA00DDE99B /* Default-568h@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		32840A731715637600DDE99B /* Multi Language */ = {
+			isa = PBXGroup;
+			children = (
+				32840A4717155BEA00DDE99B /* InfoPlist.strings */,
+			);
+			name = "Multi Language";
+			sourceTree = "<group>";
+		};
+		32840A74171563BE00DDE99B /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				32840A5917155BEA00DDE99B /* MoonSunCalcViewController.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32840A3917155BEA00DDE99B /* MoonAndSunCalc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32840A5E17155BEA00DDE99B /* Build configuration list for PBXNativeTarget "MoonAndSunCalc" */;
+			buildPhases = (
+				32840A3617155BEA00DDE99B /* Sources */,
+				32840A3717155BEA00DDE99B /* Frameworks */,
+				32840A3817155BEA00DDE99B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoonAndSunCalc;
+			productName = MoonAndSunCalc;
+			productReference = 32840A3A17155BEA00DDE99B /* MoonAndSunCalc.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32840A3117155BEA00DDE99B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MoonSunCalc;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Duc Long";
+			};
+			buildConfigurationList = 32840A3417155BEA00DDE99B /* Build configuration list for PBXProject "MoonAndSunCalc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32840A2F17155BEA00DDE99B;
+			productRefGroup = 32840A3B17155BEA00DDE99B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32840A3917155BEA00DDE99B /* MoonAndSunCalc */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32840A3817155BEA00DDE99B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32840A4917155BEA00DDE99B /* InfoPlist.strings in Resources */,
+				32840A5117155BEA00DDE99B /* Default.png in Resources */,
+				32840A5317155BEA00DDE99B /* Default@2x.png in Resources */,
+				32840A5517155BEA00DDE99B /* Default-568h@2x.png in Resources */,
+				32840A5B17155BEA00DDE99B /* MoonSunCalcViewController.xib in Resources */,
+				32840A8017156C6900DDE99B /* UserLocation.png in Resources */,
+				32840A8117156C6900DDE99B /* MoonRise.png in Resources */,
+				32840A8217156C6900DDE99B /* MoonSet.png in Resources */,
+				32840A8317156C6900DDE99B /* mylocation.png in Resources */,
+				320AFF8C1716B1D6006AD9FB /* SunRise.png in Resources */,
+				320AFF8D1716B1D6006AD9FB /* SunSet.png in Resources */,
+				322823BC171D360700211081 /* icon_current_location@2x.png in Resources */,
+				322823BD171D360700211081 /* icon_current_moon@2x.png in Resources */,
+				322823BE171D360700211081 /* icon_current_sun@2x.png in Resources */,
+				322823BF171D360700211081 /* icon_moon_rise@2x.png in Resources */,
+				322823C0171D360700211081 /* icon_moon_set@2x.png in Resources */,
+				322823C1171D360700211081 /* icon_pin@2x.png in Resources */,
+				322823C2171D360700211081 /* icon_sun_rise.png in Resources */,
+				322823C3171D360700211081 /* icon_sun_set@2x.png in Resources */,
+				322823C4171D360700211081 /* icon_you@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32840A3617155BEA00DDE99B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32840A4B17155BEA00DDE99B /* main.m in Sources */,
+				32840A4F17155BEA00DDE99B /* MoonSunCalcAppDelegate.m in Sources */,
+				32840A5817155BEA00DDE99B /* MoonSunCalcViewController.m in Sources */,
+				32840A6B17155D2200DDE99B /* PositionEntity.m in Sources */,
+				32840A771715649100DDE99B /* AnnotationPoint.m in Sources */,
+				32840A7A171567D700DDE99B /* AnnotationPointView.m in Sources */,
+				32840A871715723A00DDE99B /* MapView.m in Sources */,
+				3254B6211715DA2800DBAEAD /* MoonSunCalcGobal.m in Sources */,
+				32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */,
+				321253681725253A0096ABC7 /* SunCoordinate.m in Sources */,
+				321253691725253A0096ABC7 /* SunPosition.m in Sources */,
+				3206FD19172635C500BF50CE /* MoonCoordinate.m in Sources */,
+				3206FD1A172635C500BF50CE /* MoonPosition.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		32840A4717155BEA00DDE99B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32840A4817155BEA00DDE99B /* en */,
+			);
+			name = InfoPlist.strings;
+			path = MoonAndSunCalc;
+			sourceTree = "<group>";
+		};
+		32840A5917155BEA00DDE99B /* MoonSunCalcViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32840A5A17155BEA00DDE99B /* en */,
+			);
+			name = MoonSunCalcViewController.xib;
+			path = MoonAndSunCalc;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32840A5C17155BEA00DDE99B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		32840A5D17155BEA00DDE99B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32840A5F17155BEA00DDE99B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonAndSunCalc/MoonAndSunCalc-Prefix.pch";
+				INFOPLIST_FILE = "MoonAndSunCalc/MoonAndSunCalc-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		32840A6017155BEA00DDE99B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonAndSunCalc/MoonAndSunCalc-Prefix.pch";
+				INFOPLIST_FILE = "MoonAndSunCalc/MoonAndSunCalc-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32840A3417155BEA00DDE99B /* Build configuration list for PBXProject "MoonAndSunCalc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32840A5C17155BEA00DDE99B /* Debug */,
+				32840A5D17155BEA00DDE99B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32840A5E17155BEA00DDE99B /* Build configuration list for PBXNativeTarget "MoonAndSunCalc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32840A5F17155BEA00DDE99B /* Debug */,
+				32840A6017155BEA00DDE99B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32840A3117155BEA00DDE99B /* Project object */;
+}
