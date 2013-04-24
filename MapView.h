@@ -19,9 +19,10 @@
     CGPoint location;
     CLLocation *userLocation;
     AnnotationPointView *annotationView;
+    BOOL hiddenAnnotation;
+    CLLocationCoordinate2D coordinate2D;
 
 }
-@property BOOL SunRiseSelect;
 @property (nonatomic, retain) AnnotationPointView *annotationView;
 @property (nonatomic, retain) CLLocation *userLocation;
 

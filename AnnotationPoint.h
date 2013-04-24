@@ -12,7 +12,15 @@
 @interface AnnotationPoint : NSObject<MKAnnotation>{
     NSString *name;
     CLLocationCoordinate2D coordinate;
+    BOOL HiddenSunRise;
+    BOOL HiddenSunSet;
+    BOOL HiddenSunPoint;
+
 }
+@property BOOL HiddenSunRise;
+@property BOOL HiddenSunSet;
+@property BOOL HiddenSunPoint;
+
 @property (nonatomic, copy)NSString *name;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 

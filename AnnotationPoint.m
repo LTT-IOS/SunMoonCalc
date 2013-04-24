@@ -9,9 +9,8 @@
 #import "AnnotationPoint.h"
 
 @implementation AnnotationPoint
-@synthesize name,coordinate;
+@synthesize name,coordinate,HiddenSunRise,HiddenSunPoint,HiddenSunSet;
 -(id)initWithName:(NSString *)nameAnnotation  coordinate:(CLLocationCoordinate2D)coordinateAnnotation{
-    
     if (self=[super init]) {
         self.name = nameAnnotation;
         self.coordinate = coordinateAnnotation;

@@ -135,12 +135,7 @@ BOOL SunSet = NO;
 
 - (void) setSunPositionWithTime:(SunPosition *)sunPostion withDate:(NSDate *)date
 {
-    NSLog(@"rise date : %@, now = %@, set date : %@",timeRiseSun,date,timeSetSun);
-//    if (( (Sunrise == NO) && (SunSet == NO)&&(VHzS[2] < 0))) {
-//        positionEntity.pointSunX = 103;
-//        positionEntity.pointSunY = 103;
-//    }
-//    
+
     if ((([date compare:timeRiseSun]== NSOrderedAscending)||([date compare:timeSetSun]== NSOrderedDescending)) ) {
         positionEntity.pointSunX = 103;
         positionEntity.pointSunY = 103;
@@ -547,7 +542,6 @@ BOOL SunSet = NO;
 
 - (void)computeSunriseAndSunSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng
 {
-    NSLog(@"lat = %f,long = %f",lat,lng);
     Rise_azS = 0.0;
     Set_azS = 0.0;
     Rise_timeS[0] = 0.0;

@@ -13,14 +13,18 @@
 
 @implementation AnnotationPointView
 @synthesize moonSucCalc;
-@synthesize position,SunRiseSelect,dateCompute;
+@synthesize position,SunRiseSelect,dateCompute,annotationPoint;
 
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
+        NSLog(@"lat = %f,long = %f",lat,lng);
+        self.annotationPoint = annotation;
         dateCompute = date;
         SunRiseSelect = YES;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateCoordinate:) name:@"UpdateCoordinate" object:nil];
+        
+        
         moonSucCalc = [[MoonSunCalcGobal alloc]init];
         
 //        [moonSucCalc computeMoonriseAndMoonSet:postionEntity];
@@ -59,10 +63,9 @@
         UIImage *sunPointImage = [UIImage imageNamed:@"icon_current_sun@2x.png"];
         sunPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunX, position.pointSunY, 20, 20)];
         sunPointImageView.image = sunPointImage;
+        [self addSubview:sunPointImageView];
 
         [self updateContentView];
-        [self addSubview:sunPointImageView];
-        
         self.frame = CGRectMake(0, 0, 205, 205);
         self.backgroundColor = [UIColor clearColor];
                 
@@ -192,6 +195,12 @@
         moonPointImageView.center = newCenter;
     }
     
+    
+// set up for Sun
+    if (self.annotationPoint.HiddenSunRise == YES) {
+        position.pointSunRiseX = 103;
+        position.pointSunRiseY = 103;
+    }
     if (position.pointSunRiseX == 103 && position.pointSunRiseY == 103 ) {
         sunRiseImageView.hidden = YES;
     }
@@ -202,6 +211,12 @@
         newCenter.y = position.pointSunRiseY - 16;
         sunRiseImageView.center = newCenter;
     }
+    
+    
+    if (self.annotationPoint.HiddenSunSet == YES) {
+        position.pointSunSetX = 103;
+        position.pointSunSetY = 103;
+    }
     if (position.pointSunSetX == 103 && position.pointSunSetY == 103 ) {
         sunSetImageView.hidden = YES;
     }
@@ -211,6 +226,12 @@
         newCenter.x = position.pointSunSetX + 12;
         newCenter.y = position.pointSunSetY - 14;
         sunSetImageView.center = newCenter;
+    }
+    
+    
+    if (self.annotationPoint.HiddenSunPoint == YES) {
+        position.pointSunX = 103;
+        position.pointSunY = 103;
     }
     if (position.pointSunX == 103 && position.pointSunY == 103 ) {
         sunPointImageView.hidden = YES;
