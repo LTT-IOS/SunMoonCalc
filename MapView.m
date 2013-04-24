@@ -18,14 +18,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        SunRiseSelect = YES;
         userLocation = [[CLLocation alloc]init];
         userLocation = [[ShareLocation shareMyInstance] getOldLocation];
 
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdatePoint:) name:@"UpdatePoint" object:nil];
 
-        moonSunCalc = [[MoonSunCalcGobal alloc]init];
-        [moonSunCalc getDate];
-        positionEntity = [[PositionEntity alloc]initWithLatitude:64.472800 longitude:-75.937500 withDay:moonSunCalc.dayNow withMonth:moonSunCalc.monthNow withYear:moonSunCalc.yearNow];
         
         mapViewController = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
         [mapViewController setMapType:MKMapTypeStandard];
@@ -33,7 +31,7 @@
         [mapViewController setShowsUserLocation:YES];
         [self addSubview:mapViewController];
 
-        [self addPointAnnotation:positionEntity.latitude withLongitude:positionEntity.longitude];
+        [self addPointAnnotation:18.39623 withLongitude:54.125975];
         
         UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         buttonHidenSunRise.frame = CGRectMake(240, 400, 70, 50);
@@ -45,14 +43,11 @@
 }
 
 -(void)didUpdatePoint:(NSNotification *)notifi{
-    
-    positionEntity = (PositionEntity *)[notifi object];
-    locationPoint.x = positionEntity.locationX;
-    locationPoint.y = positionEntity.locationY;
-    CLLocationCoordinate2D coord2 = [self.mapViewController convertPoint:locationPoint toCoordinateFromView:self.mapViewController];
-    positionEntity.latitude = coord2.latitude;
-    positionEntity.longitude = coord2.longitude;
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdateCoordinate" object:positionEntity];
+    NSValue *value = (NSValue *)[notifi object];
+    CGPoint point = [value CGPointValue];
+    CLLocationCoordinate2D coord2 = [self.mapViewController convertPoint:point toCoordinateFromView:self.mapViewController];
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:coord2.latitude longitude:coord2.longitude];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdateCoordinate" object:newLocation];
 }
 
 - (void)addPointAnnotation :(float)latitute withLongitude:(float)longitude
@@ -80,7 +75,7 @@
     if ([annotation isKindOfClass:[AnnotationPoint class]]) {
         annotationView = (AnnotationPointView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
-            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withPosition:positionEntity];
+            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:[NSDate date] withLatitude:18.39623 withLongitude:54.125975];
         }
     }
     return annotationView;
@@ -127,7 +122,8 @@
     else{
         SunRiseSelect = NO;
     }
-    
+
+    NSLog(@"select : %d",SunRiseSelect);
 }
 
 @end

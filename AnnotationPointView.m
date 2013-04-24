@@ -13,39 +13,18 @@
 
 @implementation AnnotationPointView
 @synthesize moonSucCalc;
-@synthesize position,SunRiseSelect;
+@synthesize position,SunRiseSelect,dateCompute;
 
--(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withPosition:(PositionEntity *)postionEntity{
+-(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
+        dateCompute = date;
         SunRiseSelect = YES;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateCoordinate:) name:@"UpdateCoordinate" object:nil];
         moonSucCalc = [[MoonSunCalcGobal alloc]init];
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        //NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT+7"];
-//        NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-//        [dateFormatter setTimeZone:timeZone];
-//        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//        
-//        NSDate *d = [dateFormatter dateFromString:@"2013-04-23 14:34:00"];
-        NSDate *d = [NSDate date];
-       // NSDictionary *sunTimes = [[NSDictionary alloc]init];
-        //sunTimes = [moonSucCalc getSunTimesWithDate:d andLatitude:postionEntity.latitude andLogitude:postionEntity.longitude];
-
-//        [self computePointInCricle:azimuthSunSet withRiseOrSet:SunSetSelected];
-//        NSDate *riseDate = (NSDate *)[sunTimes objectForKey:@"sunrise"];
-//        NSDate *setDate = (NSDate*)[sunTimes objectForKey:@"sunset"];
-//        double azimuthSunRise = [moonSucCalc getSunAzimuthWithDate:riseDate andLatitude:23.684774 andLongitude:23.684774];
-//        [moonSucCalc computePointInCricle:azimuthSunRise withRiseOrSet:SunRiseSelected];
-//        double azimuthSunSet = [moonSucCalc getSunAzimuthWithDate:setDate andLatitude:23.684774 andLongitude:23.684774];
-//        [moonSucCalc computePointInCricle:azimuthSunSet withRiseOrSet:SunSetSelected];
-
-        [moonSucCalc computeMoonriseAndMoonSet:postionEntity];
-        [moonSucCalc computeSunriseAndSunSet:postionEntity];
-        SunPosition *sunR = [moonSucCalc getSunPositionWithDate:d andLatitude:postionEntity.latitude andLongitude:postionEntity.longitude];
-        [moonSucCalc setSunPositionWithTime:sunR ];
-
-//        NSLog(@"la = %f,log = %f",postionEntity.latitude,postionEntity.longitude);
+        
+//        [moonSucCalc computeMoonriseAndMoonSet:postionEntity];
+        [moonSucCalc computeSunriseAndSunSet:date withLatitude:lat withLongitude:lng];
         position = moonSucCalc.positionEntity;
         
         UIImage *imageCenter = [UIImage imageNamed:@"icon_pin@2x.png"];
@@ -162,26 +141,17 @@
     [self setCenter:pointLocation];
     
     CGPoint location = [aTouch locationInView:self.window];
-    position.locationX = location.x;
-    position.locationY = location.y - 20;
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdatePoint" object:position];
+    CGPoint point;
+    point.x = location.x;
+    point.y = location.y - 20;
+    NSValue *value = [NSValue valueWithCGPoint:point];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdatePoint" object:value];
 }
 
 -(void)didUpdateCoordinate:(NSNotification *)notifi{
-    position = (PositionEntity *)[notifi object];
-    [moonSucCalc computeMoonriseAndMoonSet:position];
-    [moonSucCalc computeSunriseAndSunSet:position];
-    //NSDate *da = [NSDate date];
-    //NSDictionary *sunTimes = [[NSDictionary alloc]init];
-    //sunTimes = [moonSucCalc getSunTimesWithDate:da andLatitude:position.latitude andLogitude:position.longitude];
-//    NSDate *riseDate = (NSDate *)[sunTimes objectForKey:@"sunrise"];
-//    NSDate *setDate = (NSDate*)[sunTimes objectForKey:@"sunset"];
-//    double azimuthSunRise = [moonSucCalc getSunAzimuthWithDate:riseDate andLatitude:23.684774 andLongitude:23.684774];
-//    [moonSucCalc computePointInCricle:azimuthSunRise withRiseOrSet:SunRiseSelected];
-//    double azimuthSunSet = [moonSucCalc getSunAzimuthWithDate:setDate andLatitude:23.684774 andLongitude:23.684774];
-//    [moonSucCalc computePointInCricle:azimuthSunSet withRiseOrSet:SunSetSelected];
-    SunPosition *sunP = [moonSucCalc getSunPositionWithDate:[NSDate date] andLatitude:position.latitude andLongitude:position.longitude];
-    [moonSucCalc setSunPositionWithTime:sunP ];
+    CLLocation *newLocation = (CLLocation *)[notifi object];
+//    [moonSucCalc computeMoonriseAndMoonSet:position];
+    [moonSucCalc computeSunriseAndSunSet:dateCompute withLatitude:newLocation.coordinate.latitude withLongitude:newLocation.coordinate.longitude];
     position = moonSucCalc.positionEntity;
     [self updateContentView];
 }

@@ -22,10 +22,11 @@
     BOOL SunRiseSelect;
 
 }
+@property (nonatomic, retain)NSDate *dateCompute;
 @property BOOL SunRiseSelect;
 @property PositionEntity *position;
 
 @property (nonatomic, retain) MoonSunCalcGobal *moonSucCalc;
--(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withPosition:(PositionEntity *)postionEntity;
+-(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng ;
 
 @end

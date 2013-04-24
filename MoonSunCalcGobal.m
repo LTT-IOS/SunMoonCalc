@@ -44,7 +44,7 @@ BOOL Sunrise = NO;
 BOOL SunSet = NO;
 
 @implementation MoonSunCalcGobal
-@synthesize dayNow,monthNow,yearNow;
+@synthesize dayNow,monthNow,yearNow,timeRiseSun,timeSetSun;
 @synthesize pointRiseX,pointRiseY,pointSetX,pointSetY;
 @synthesize positionEntity;
 - (id)init
@@ -52,8 +52,6 @@ BOOL SunSet = NO;
     self = [super init];
     if (self) {
         positionEntity = [[PositionEntity alloc]init];
-        
-        // Initialization code
     }
     return self;
 }
@@ -121,11 +119,9 @@ BOOL SunSet = NO;
     SunCoordinate *coor = [[SunCoordinate alloc]initWithDeclination:[self getDeclinationWithLongitude:L andLatitude:0] andRightAscension:[self getRightAscensionWithLongitude:L andLatitude:0]];
     return coor;
 }
-- (SunPosition *) getSunPositionWithDate:(NSDate*)date andLatitude:(double)lat andLongitude:(double)lng {
-    NSLog(@"date = %@, lat = %f,long = %f",date,lat,lng);
+- (void ) getSunPositionWithDate:(NSDate*)date andLatitude:(double)lat andLongitude:(double)lng {
     double lw = DR * (-lng);
     double phi = DR * lat;
-
     double d = [self toDays:date];
     SunCoordinate * c = [[SunCoordinate alloc]init ];
     c = [self getSunCoordsWithDayNumber:d];
@@ -133,158 +129,27 @@ BOOL SunSet = NO;
     double H = [self getSiderealTimeWithDayNumber:d andObserverLongitude:lw] - c.rightAscension;
     
     SunPosition *pos = [[SunPosition alloc]initWithAzimuth:[self getAzimuthWithHourAngle:H observerLatitude:phi andDeclination:c.declination] andAltitude:[self getAltitudeWithHourAngle:H observerLatitude:phi andDeclination:c.declination]];
-//    NSLog(@"az position :%f",pos.azimuth);
-    return pos;
+    [self setSunPositionWithTime:pos withDate:date];
+
 }
 
-- (double )getSunAzimuthWithDate:(NSDate*)date andLatitude:(double)lat andLongitude:(double)lng {
-    double lw = DR * (-lng);
-    double phi = DR * lat;
-    
-    double d = [self toDays:date];
-    SunCoordinate * c = [[SunCoordinate alloc]init ];
-    c = [self getSunCoordsWithDayNumber:d];
-    
-    double H = [self getSiderealTimeWithDayNumber:d andObserverLongitude:lw] - c.rightAscension;
-    
-    double azimuth = [self getAzimuthWithHourAngle:H observerLatitude:phi andDeclination:c.declination];
-    return   azimuth;
-}
-
-- (void) setSunPositionWithTime:(SunPosition *)sunPostion
+- (void) setSunPositionWithTime:(SunPosition *)sunPostion withDate:(NSDate *)date
 {
+    if ((([date compare:timeRiseSun]== NSOrderedAscending)||([date compare:timeSetSun]== NSOrderedDescending))&& (Sunrise == NO) && (SunSet == NO)&&(VHzS[2] < 0)) {
+        positionEntity.pointSunX = 103;
+        positionEntity.pointSunY = 103;
+    }
+
+    else {
     double angle =  sunPostion.azimuth - M_PI_2;
     float x = 103 + 100 *cos(angle)*cos(sunPostion.altitude);
     float y = 103 + 100 *sin(angle)*cos(sunPostion.altitude);
     positionEntity.pointSunX = x;
     positionEntity.pointSunY = y;
-}
-
-- (void) setSunPositionRiseWithTime:(SunPosition *)sunPostion 
-{
-    double angle =  sunPostion.azimuth + M_PI_2;
-    float x = 103 + 100 *cos(angle);
-    float y = 103 + 100 *sin(angle);
-    positionEntity.pointSunRiseX = x;
-    positionEntity.pointSunRiseY = y;
-}
-- (void) setSunPositionSetWithTime:(SunPosition *)sunPostion
-{
-    double angle =  sunPostion.azimuth + M_PI_2;
-    float x = 103 + 100 *cos(angle);
-    float y = 103 + 100 *sin(angle);
-    positionEntity.pointSunSetX = x;
-    positionEntity.pointSunSetY = y;
-}
-
-- (double)J0 {
-    return 0.0009;
-}
-- (double)getJulianCycleWithDayNumber:(double)d andObserverLongitude:(double)lw {
-    return round(d-self.J0-lw/(2*M_PI));
-}
-- (double)getApproxTransitWithHourAngle:(double)Ht andObserverLongitude:(double)lw andJulianCycle:(double)n {
-    return self.J0 + (Ht + lw)/(2*M_PI) + n;
-}
-- (double)getSolarTransitJWithApproxTransit:(double)ds andSolarMeanTime:(double)M andEclipticLongitude:(double)L {
-    return self.J2000 + ds + 0.0053*sin(M) - 0.0069 * sin(2*L);
-}
-- (double)dayS {
-    return 60*60*24;
-}
-
-- (NSDate*)fromJulian:(double)j {
-    double timeInterval = (j+ 0.5 - self.J1970) * self.dayS;
-    NSDate* date = [[NSDate alloc]initWithTimeIntervalSince1970:timeInterval];
-    return date;
-}
-- (NSDate*)convertDate:(NSDate*)sourceDate {
-    
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-
-    NSTimeInterval interval = destinationGMTOffset + sourceGMTOffset;
-    
-    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate];
-    return destinationDate;
-}
-
-
-- (NSDate*)convertDateToGMT:(NSDate*)sourceDate {
-    
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = -destinationGMTOffset + sourceGMTOffset;
-    
-    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate];
-    return destinationDate;
-}
-- (NSMutableArray*)times {
-    NSMutableArray *times = [[NSMutableArray alloc]init ];
-    NSArray *temp;
-    temp = nil;
-    temp = [[NSArray alloc]initWithObjects: @"-0.83",@"sunrise",@"sunset", nil ];
-    [times addObject:temp];
-    temp = [[NSArray alloc]initWithObjects:@"-0.3",@"sunriseEnd", @"sunsetStart", nil];
-    [times addObject:temp];
-    temp = [[NSArray alloc]initWithObjects:@"-6",@"dawn",@"dusk", nil];
-    [times addObject:temp];
-    temp = [[NSArray alloc]initWithObjects:@"-12",@"nauticalDawn",@"nauticalDusk", nil];
-    [times addObject:temp];
-    temp = [[NSArray alloc]initWithObjects:@"-18",@"nightEnd",@"night", nil ];
-    [times addObject:temp];
-    temp = [[NSArray alloc]initWithObjects:@"6",@"goldenHourEnd",@"goldenHour", nil];
-    [times addObject:temp];
-    return times;
-}
-- (double)getHourAngleWithAltitude:(double)h andObserverLatitude:(double)phi andDeclination:(double)d {
-    //    NSLog(@"%f",(sin(h) - sin(phi)*sin(d))/(cos(phi) *cos(d)));
-    return acos((sin(h) - sin(phi)*sin(d))/(cos(phi) *cos(d)));
-}
-- (NSDictionary*)getSunTimesWithDate:(NSDate*)date andLatitude:(double)lat andLogitude:(double)lng {
-    NSLog(@"date is : %@",date);
-    double lw = DR * -lng;
-    double phi = DR * lat;
-    double d = [self toDays:date];
-    double n = [self getJulianCycleWithDayNumber:d andObserverLongitude:lw];
-    double ds = [self getApproxTransitWithHourAngle:0 andObserverLongitude:lw andJulianCycle:n];
-    
-    double M = [self getSolarMeanAnomalyWithDayNumber:ds];
-    double C = [self getEquationOfCenterWithSolarMean:M];
-    double L = [self getEclipticLongitudeWithSolarMean:M andCenter:C];
-    
-    double dec = [self getDeclinationWithLongitude:L andLatitude:0];
-    double Jnoon = [self getSolarTransitJWithApproxTransit:ds andSolarMeanTime:M andEclipticLongitude:L];
-    NSMutableDictionary *sunTimes = [[NSMutableDictionary alloc]init ];
-    
-    [sunTimes setValue:[self convertDate:[self fromJulian:Jnoon]] forKey:@"solarNoon"];
-    [sunTimes setValue:[self convertDate:[self fromJulian:(Jnoon-0.05)]] forKey:@"nadir"];
-    NSArray *time = [[NSArray alloc]init ];
-    for(int i =0;i<[self times].count;i++) {
-        time = [[self times]objectAtIndex:i];
-        double temp = [[time objectAtIndex:0] doubleValue]*DR;
-        double w = [self getHourAngleWithAltitude:temp andObserverLatitude:phi andDeclination:dec];
-        double a = [self getApproxTransitWithHourAngle:w andObserverLongitude:lw andJulianCycle:n];
-        double Jset = [self getSolarTransitJWithApproxTransit:a andSolarMeanTime:M andEclipticLongitude:L];
-        double Jrise = Jnoon - (Jset - Jnoon);
-        [sunTimes setValue:[self convertDate:[self fromJulian:Jrise]] forKey:[NSString stringWithFormat:@"%@",[time objectAtIndex:1]]];
-        [sunTimes setValue:[self convertDate:[self fromJulian:Jset]] forKey:[NSString stringWithFormat:@"%@",[time objectAtIndex:2]]];
     }
-    NSDate *riseDate = (NSDate *)[sunTimes objectForKey:@"sunrise"];
-    SunPosition *sun = [[SunPosition alloc]init];
-    sun = [self getSunPositionWithDate:[self convertDateToGMT:riseDate] andLatitude:lat andLongitude:lng];
-    [self setSunPositionRiseWithTime:sun];
-    NSLog(@"suntimes = %@",[self convertDateToGMT:riseDate]);
-    return sunTimes;
     
 }
+
 #pragma mark - get point Moon
 -(MoonCoordinate *)getMoonCoords:(double)julianday { // geocentric ecliptic coordinates of the moon
     
@@ -298,25 +163,7 @@ BOOL SunSet = NO;
     MoonCoordinate *moonCor = [[MoonCoordinate alloc]initWithDeclination:[self getRightAscensionWithLongitude:l andLatitude:b] andRightAscension:[self getDeclinationWithLongitude:l andLatitude:b] andDistance:dt];
     return moonCor;
 }
-//- (void)getMoonPositionWithDate:(NSDate*)date withLatitude:(double)lat withLongitude:(double)lng {
-//    
-//    double lw = DR * -lng;
-//    double phi = DR * lat;
-//    double d = [self toDays:date];
-//    SunPosition *c = [[SunPosition alloc]init];
-//    double H = 
-//    H = getSiderealTime(d, lw) - c.ra,
-//    h = getAltitude(H, phi, c.dec);
-//    
-//    // altitude correction for refraction
-//    h = h + rad * 0.017 / tan(h + rad * 10.26 / (h + rad * 5.10));
-//    
-//    return {
-//    azimuth: getAzimuth(H, phi, c.dec),
-//    altitude: h,
-//    distance: c.dist
-//    };
-//};
+
 #pragma mark - compute point Rise and Set in Cricle of moon and sun
 
 - (void)computePointInCricle:(float)azumith withRiseOrSet:(int)riseOrSet{
@@ -423,12 +270,8 @@ BOOL SunSet = NO;
 
 #pragma mark - compute moonrise and moon set
 
-- (void)computeMoonriseAndMoonSet:(PositionEntity *)position{
-    positionEntity.day = position.day;
-    positionEntity.month = position.month;
-    positionEntity.year = position.year;
-    positionEntity.latitude = position.latitude;
-    positionEntity.longitude = position.longitude;
+- (void)computeMoonriseAndMoonSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng{
+
 
     Rise_azM = 0.0;
     Set_azM = 0.0;
@@ -437,19 +280,25 @@ BOOL SunSet = NO;
     Set_timeM[0] = 0.0;
     Set_timeM[1] = 0.0;
     VHzM[2] = 0.0;
+    NSString *day = [self conVertDateToStringDay:date];
+    int dayValue = [day intValue];
+    NSString *month = [self conVertDateToStringMonth:date];
+    int monthValue = [month intValue];
+    NSString *year = [self conVertDateToStringYear:date];
+    int yearValue = [year intValue];
     
+    double jd = [self julian_day:yearValue withMonth:monthValue withDay:dayValue] - 2451545.0;
     
-    double jd = [self julian_day:position.year withMonth:position.month withDay:position.day] - 2451545.0;
     double mp[3][3] = {0.0,0.0,0.0,0.0,0.0,0.0};
     
     NSDate *sourceDate = [NSDate date];
     NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
     double timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate] / 3600.0;
-    double x = position.longitude;
+    double x = lng;
     double zone = round(-x/15.0);
     
     double timeZoneInterVal = (timeZoneOffset + zone);
-    float longitude = position.longitude/360.0;
+    float longitude = lng/360.0;
     
     double tz = zone / 24.0;
     
@@ -481,7 +330,7 @@ BOOL SunSet = NO;
         ph = (k + 1)/24.0;
         RAnM[2] = [self interpolate:mp[0][0] withf1:mp[1][0] withf2:mp[2][0] withp:ph];
         DecM[2] = [self interpolate:mp[0][1] withf1:mp[1][1] withf2:mp[2][1] withp:ph];
-        VHzM[2] = [self test_moon:k withZone:zone witht0:t0 withLat:position.latitude withPlx:mp[1][2]];
+        VHzM[2] = [self test_moon:k withZone:zone witht0:t0 withLat:lat withPlx:mp[1][2]];
         RAnM[0] = RAnM[2];                       // advance to next hour
         DecM[0] = DecM[2];
         VHzM[0] = VHzM[2];
@@ -493,22 +342,16 @@ BOOL SunSet = NO;
     positionEntity.minuteMoonRise = Rise_timeM[1];
     positionEntity.hourMoonSet = Set_timeM[0];
     positionEntity.minuteMoonSet = Set_timeM[1];
-//    NSLog(@"latitude = %f, longitude = %f",position.latitude,position.longitude);
-//    NSLog(@"moonrise = %d,  moonset = %d,vhz2 = %f",MoonRise,MoonSet,VHzM[2]);
-    //NSLog(@"latitude : %f, longitude = %f",position.latitude,position.longitude);
 
     if (MoonRise == YES) {
         [self computePointInCricle:Rise_azM withRiseOrSet:MoonRiseSelected];
-
     }
     else {
         positionEntity.pointMoonRiseX = 103;
         positionEntity.pointMoonRiseY = 103;
-
     }
     if (MoonSet == YES) {
         [self computePointInCricle:Set_azM withRiseOrSet:MoonSetSelected];
-
     }
     else
     {
@@ -673,9 +516,8 @@ BOOL SunSet = NO;
 
 #pragma mark - compute Sun rise and Sun set
 
-- (void)computeSunriseAndSunSet:(PositionEntity *)position
+- (void)computeSunriseAndSunSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng
 {
-//    NSLog(@"lat = %f,long = %f",position.latitude,position.longitude);
     Rise_azS = 0.0;
     Set_azS = 0.0;
     Rise_timeS[0] = 0.0;
@@ -685,30 +527,29 @@ BOOL SunSet = NO;
     VHzS[2] = 0.0;
     timeSunRiseLocation = 0.0;
     timeSunSetLocation = 0.0;
-    positionEntity.day = position.day;
-    positionEntity.month = position.month;
-    positionEntity.year = position.year;
-    positionEntity.latitude = position.latitude;
-    positionEntity.longitude = position.longitude;
-    
-    int k;
-    double jd = [self julian_day:2013 withMonth:4 withDay:8] - 2451545.0;
-//    NSLog(@"jd la : %f",jd);
+    NSString *day = [self conVertDateToStringDay:date];
+    int dayValue = [day intValue];
+    NSString *month = [self conVertDateToStringMonth:date];
+    int monthValue = [month intValue];
+    NSString *year = [self conVertDateToStringYear:date];
+    int yearValue = [year intValue];
 
+    int k;
+    double jd = [self julian_day:yearValue withMonth:monthValue withDay:dayValue] - 2451545.0;
     NSDate *sourceDate = [NSDate date];
     NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
     double timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate] / 3600.0;
-    double x = position.longitude;
+    double x = lng;
     double zone = round(-x/15.0);
     
     double timeZoneInterVal = (timeZoneOffset + zone);
-    NSLog(@"time zon interval : %f",timeZoneInterVal);
-    double longitude = position.longitude /360.0;
-    double tz  = -timeZoneOffset /24.0;
+    double longitude = lng /360.0;
+    double tz  = zone /24.0;
     double ct  = jd/36525.0 + 1;                    // centuries since 1900.0
     double t0 = [self lst:longitude withJday:jd withZ:tz];
     jd = jd + tz;
 
+    
     // get sun position at start of day
     [self sun:jd withCT:ct];
     float ra0  = SkyS[0];
@@ -731,25 +572,32 @@ BOOL SunSet = NO;
     {
         RAnS[2] = ra0  + (k + 1)*(ra1  - ra0)/24.0;
         DecS[2] = dec0 + (k + 1)*(dec1 - dec0)/24.0;
-        VHzS[2] = [self test_hour:k withZone:-timeZoneOffset wihtT0:t0 withLat:position.latitude];
+        VHzS[2] = [self test_hour:k withZone:zone wihtT0:t0 withLat:lat];
         
         RAnS[0] = RAnS[2];                       // advance to next hour
         DecS[0] = DecS[2];
         VHzS[0] = VHzS[2];
     }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    [dateFormatter setTimeZone:timeZone];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSString *dateStringRise = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,[NSString stringWithFormat:@"%d",Rise_timeS[0]],[NSString stringWithFormat:@"%d",Rise_timeS[1]]];
+    
+    NSDate *timeRise = [dateFormatter dateFromString:dateStringRise];
+    timeRiseSun = [NSDate dateWithTimeInterval:timeZoneInterVal*60*60 sinceDate:timeRise];
+    
+    NSString *dateStringSet = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,[NSString stringWithFormat:@"%d",Set_timeS[0]],[NSString stringWithFormat:@"%d",Set_timeS[1]]];
+    
+    NSDate *timeSet = [dateFormatter dateFromString:dateStringSet];
+     timeSetSun = [NSDate dateWithTimeInterval:timeZoneInterVal*60*60 sinceDate:timeSet];
+    
+    [self getSunPositionWithDate:date andLatitude:lat andLongitude:lng];
 
-    positionEntity.azimuthSunRise = Rise_azS;
-    positionEntity.azimuthSunSet = Set_azS;
-    positionEntity.hourSunRise = Rise_timeS[0];
-    positionEntity.minuteSunRise = Rise_timeS[1];
-    positionEntity.hourSunSet = Set_timeS[0];
-    positionEntity.minuteSunSet = Set_timeS[1];
-//    NSLog(@"sunrise = %d : %d",Rise_timeS[0],Rise_timeS[1]);
-//    NSLog(@"azrise = %f",Rise_azS);
-    timeSunRiseLocation = [self convertTimeToFloat:(Rise_timeS[0] ) withMinute:Rise_timeM[1]];
-    timeSunSetLocation = [self convertTimeToFloat:(Set_timeS[0] ) withMinute:Set_timeS[1]];
-//    [self computeAngleOfSunPointWithNorth:(Rise_timeS[0] + timeZoneInterVal) withMinuteRise:Rise_timeS[1] withhousrSet:(Set_timeS[0] + timeZoneInterVal) withMinuteSet:Set_timeS[1] withRiseAz:Rise_azS withSetAz:Set_azS withTimeCompute:12];
     if (Sunrise == YES) {
+
         [self computePointInCricle:Rise_azS withRiseOrSet:SunRiseSelected];
     }
     else{
@@ -782,8 +630,8 @@ BOOL SunSet = NO;
     s = sin(lat*DR);
     c = cos(lat*DR);
     z = cos(90.833*DR);                   // refraction + sun semidiameter at horizon
-    
     if (k <= 0)
+        
         VHzS[0] = s*sin(DecS[0]) + c*cos(DecS[0])*cos(ha[0]) - z;
     
     VHzS[2] = s*sin(DecS[2]) + c*cos(DecS[2])*cos(ha[2]) - z;

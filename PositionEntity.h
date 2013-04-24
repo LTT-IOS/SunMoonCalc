@@ -10,13 +10,6 @@
 
 @interface PositionEntity : NSObject
 {
-    float latitude;
-    float longitude;
-    int day;
-    int month;
-    int year;
-    float locationX;
-    float locationY;
     float pointMoonRiseX;
     float pointMoonRiseY;
     float pointMoonSetX;
@@ -44,13 +37,7 @@
     int hourSunSet;
     int minuteSunSet;
 }
-@property float latitude;
-@property float longitude;
-@property int day;
-@property int month;
-@property int year;
-@property float locationX;
-@property float locationY;
+
 @property float pointMoonRiseX;
 @property float pointMoonRiseY;
 @property float pointMoonSetX;
