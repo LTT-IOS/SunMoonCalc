@@ -26,7 +26,6 @@
 - (void)computeMoonriseAndMoonSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng;
 - (void)computeSunriseAndSunSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng;
 - (void ) getSunPositionWithDate:(NSDate*)date andLatitude:(double)lat andLongitude:(double)lng ;
-- (void)computePointInCricle:(float)azumith withRiseOrSet:(int)riseOrSet;
 
 
 @end

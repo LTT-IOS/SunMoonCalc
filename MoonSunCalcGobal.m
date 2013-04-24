@@ -135,9 +135,39 @@ BOOL SunSet = NO;
 
 - (void) setSunPositionWithTime:(SunPosition *)sunPostion withDate:(NSDate *)date
 {
-    if ((([date compare:timeRiseSun]== NSOrderedAscending)||([date compare:timeSetSun]== NSOrderedDescending))&& (Sunrise == NO) && (SunSet == NO)&&(VHzS[2] < 0)) {
+    NSLog(@"rise date : %@, now = %@, set date : %@",timeRiseSun,date,timeSetSun);
+//    if (( (Sunrise == NO) && (SunSet == NO)&&(VHzS[2] < 0))) {
+//        positionEntity.pointSunX = 103;
+//        positionEntity.pointSunY = 103;
+//    }
+//    
+    if ((([date compare:timeRiseSun]== NSOrderedAscending)||([date compare:timeSetSun]== NSOrderedDescending)) ) {
         positionEntity.pointSunX = 103;
         positionEntity.pointSunY = 103;
+        
+        if ((!Sunrise)&&(!SunSet))                 // neither sunrise nor sunset
+        {
+            if (VHzS[2] < 0){
+                positionEntity.pointSunX = 103;
+                positionEntity.pointSunY = 103;
+            }
+            else{
+                double angle =  sunPostion.azimuth - M_PI_2;
+                float x = 103 + 100 *cos(angle)*cos(sunPostion.altitude);
+                float y = 103 + 100 *sin(angle)*cos(sunPostion.altitude);
+                positionEntity.pointSunX = x;
+                positionEntity.pointSunY = y;
+            }
+            
+        }
+        else if ((!Sunrise)||(!SunSet))                                    // sunrise or sunset
+        {
+            double angle =  sunPostion.azimuth - M_PI_2;
+            float x = 103 + 100 *cos(angle)*cos(sunPostion.altitude);
+            float y = 103 + 100 *sin(angle)*cos(sunPostion.altitude);
+            positionEntity.pointSunX = x;
+            positionEntity.pointSunY = y;
+        }
     }
 
     else {
@@ -147,7 +177,7 @@ BOOL SunSet = NO;
     positionEntity.pointSunX = x;
     positionEntity.pointSunY = y;
     }
-    
+
 }
 
 #pragma mark - get point Moon
@@ -358,7 +388,6 @@ BOOL SunSet = NO;
         positionEntity.pointMoonSetX = 103;
         positionEntity.pointMoonSetY = 103;
     }
-    [self computeAngleOfMoonPointWithNorth:(Rise_timeM[0] + timeZoneInterVal) withMinuteRise:Rise_timeM[1] withhousrSet:(Set_timeM[0] + timeZoneInterVal) withMinuteSet:Set_timeM[1] withRiseAz:Rise_azM withSetAz:Set_azM withTimeCompute:22];
 
 }
 
@@ -518,6 +547,7 @@ BOOL SunSet = NO;
 
 - (void)computeSunriseAndSunSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng
 {
+    NSLog(@"lat = %f,long = %f",lat,lng);
     Rise_azS = 0.0;
     Set_azS = 0.0;
     Rise_timeS[0] = 0.0;
@@ -774,135 +804,6 @@ BOOL SunSet = NO;
     
     return jd;
 }
-#pragma mark - compute point by time in cricle
-
-- (void)computeAngleOfSunPointWithNorth:(int)hourRise withMinuteRise:(int)minuteRise withhousrSet:(int)hourSet withMinuteSet:(int)minuteSet withRiseAz:(float)riseAZ withSetAz:(float)setAZ withTimeCompute:(float)timeCompute
-{
-    if (riseAZ == 0.0) {
-        [self computePointInCricle:0 withRiseOrSet:SunPoint];
- 
-    }
-    else {
-        float timeInterVal = 0.0;
-        float timeRise = 0.0;
-        float timeSet = 0.0 ;
-        timeRise = [self convertTimeToFloat:hourRise withMinute:minuteRise];
-        timeSet = [self convertTimeToFloat:hourSet withMinute:minuteSet];
-        timeInterVal = [self computeTimeInterval:timeRise withTimeSet:timeSet];
-
-        float angleInterval = setAZ - riseAZ;
-        float angleCache = (angleInterval - timeInterVal * 15) / 2;
-        //NSLog(@"angle interval = %f",angleInterval);
-        if ((timeInterVal >= 12 && angleInterval >= 180) || ( timeInterVal <= 12 && angleInterval <= 180 ) || setAZ == 0){
-            float angleToNorth = riseAZ + angleCache - ((timeRise - timeCompute)* (15));
-            if (angleToNorth < 0) {
-                angleToNorth = 360 + angleToNorth;
-            }
-            if (angleToNorth >= riseAZ && angleToNorth <= setAZ) {
-                [self computePointInCricle:angleToNorth withRiseOrSet:SunPoint];
-            }
-            else{
-                [self computePointInCricle:0 withRiseOrSet:SunPoint];
-                
-            }
-        }
-        else
-        {
-            float angleToNorth = riseAZ + angleCache - ((timeCompute - timeRise)* (15));
-            if (angleToNorth < 0) {
-                angleToNorth = 360 + angleToNorth;
-            }
-            if (angleToNorth >= riseAZ && angleToNorth <= setAZ) {
-                [self computePointInCricle:0 withRiseOrSet:SunPoint];
-                
-            }
-            else{
-                [self computePointInCricle:angleToNorth withRiseOrSet:SunPoint];
-                
-            }
-            
-        }
-
-    }
-    
-    
-}
-
-- (void)computeAngleOfMoonPointWithNorth:(int)hourRise withMinuteRise:(int)minuteRise withhousrSet:(int)hourSet withMinuteSet:(int)minuteSet withRiseAz:(float)riseAZ withSetAz:(float)setAZ withTimeCompute:(float)timeCompute
-{
-    if (riseAZ == 0.0) {
-        [self computePointInCricle:0 withRiseOrSet:MoonPoint];
-        
-    }
-    else {
-        float timeInterVal = 0.0;
-        float timeRise = 0.0;
-        float timeSet = 0.0 ;
-        timeRise = [self convertTimeToFloat:hourRise withMinute:minuteRise];
-//        NSLog(@"time Tise Float = %f",timeRise);
-        timeSet = [self convertTimeToFloat:hourSet withMinute:minuteSet];
-//        NSLog(@"time Tise Float = %f",timeSet);
-
-        timeInterVal = [self computeTimeInterval:timeRise withTimeSet:timeSet];
-//        NSLog(@"time interval = %f",timeInterVal);
-        float angleInterval = setAZ - riseAZ;
-        float angleCache = (angleInterval - timeInterVal * 15) / 2;
-
-//        NSLog(@"angle interval : %f",angleInterval);
-        if ((timeInterVal >= 12 && angleInterval >= 180) || ( timeInterVal <= 12 && angleInterval <= 180 )|| setAZ == 0){
-            float angleToNorth = riseAZ + angleCache - ((timeRise - timeCompute)* (15));
-//            NSLog(@"angle to north = %f",angleToNorth);
-            if (angleToNorth < 0) {
-                angleToNorth = 360 + angleToNorth;
-            }
-            if (angleToNorth >= riseAZ && angleToNorth <= setAZ) {
-                [self computePointInCricle:angleToNorth withRiseOrSet:MoonPoint];
-            }
-            else{
-                [self computePointInCricle:0 withRiseOrSet:MoonPoint];
-                
-            }
-        }
-        else
-        {
-            float angleToNorth = riseAZ + angleCache - ((timeCompute - timeRise)* (15));
-            if (angleToNorth < 0) {
-                angleToNorth = 360 + angleToNorth;
-            }
-            if (angleToNorth >= riseAZ && angleToNorth <= setAZ) {
-                [self computePointInCricle:0 withRiseOrSet:MoonPoint];
-            }
-            else{
-                [self computePointInCricle:angleToNorth withRiseOrSet:MoonPoint];
-                
-            }
-            
-        }
-        
-    }
-
-}
-
-- (float)convertTimeToFloat:(int)hour withMinute:(int)minute
-{
-    float results = 0.0;
-    float minuteF = minute / 60.0;
-    results = hour + minuteF;
-    return results;
-}
-
-- (float)computeTimeInterval :(float)timeRise withTimeSet:(float)timeSet
-{
-    float interval;
-    if (timeRise < timeSet || timeRise < 0) {
-        interval = timeSet - timeRise;
-    }
-    else{
-        interval = (24 - timeRise) + timeSet;
-    }
-    return interval;
-}
-
 
 #pragma mark - get date now
 

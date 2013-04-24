@@ -31,7 +31,7 @@
         [mapViewController setShowsUserLocation:YES];
         [self addSubview:mapViewController];
 
-        [self addPointAnnotation:18.39623 withLongitude:54.125975];
+        [self addPointAnnotation:37.030102 withLongitude:-115.780453];
         
         UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         buttonHidenSunRise.frame = CGRectMake(240, 400, 70, 50);
@@ -75,7 +75,7 @@
     if ([annotation isKindOfClass:[AnnotationPoint class]]) {
         annotationView = (AnnotationPointView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
-            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:[NSDate date] withLatitude:18.39623 withLongitude:54.125975];
+            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:[NSDate date] withLatitude:37.030102 withLongitude:-115.780453];
         }
     }
     return annotationView;

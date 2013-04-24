@@ -156,19 +156,8 @@
     [self updateContentView];
 }
 
-
-- (IBAction)didClickToButtonHiddenRise:(id)sender
-{
-    if (SunRiseSelect == NO) {
-        SunRiseSelect = YES;
-    }
-    else
-        SunRiseSelect = NO;
-}
-
 - (void)updateContentView
 {
-    [self setNeedsDisplay];
     CGPoint newCenter;
 
     if (position.pointMoonRiseX == 103 && position.pointMoonRiseY == 103 ) {
@@ -233,6 +222,7 @@
         newCenter.y = position.pointSunY;
         sunPointImageView.center = newCenter;
     }
+    [self setNeedsDisplay];
 
 }
 @end
