@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		3206FD19172635C500BF50CE /* MoonCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3206FD16172635C500BF50CE /* MoonCoordinate.m */; };
 		3206FD1A172635C500BF50CE /* MoonPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3206FD18172635C500BF50CE /* MoonPosition.m */; };
-		320AFF8C1716B1D6006AD9FB /* SunRise.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AFF8A1716B1D6006AD9FB /* SunRise.png */; };
-		320AFF8D1716B1D6006AD9FB /* SunSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AFF8B1716B1D6006AD9FB /* SunSet.png */; };
+		3211E5C51728D352006356E4 /* icon_pin_did_Click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3211E5C41728D352006356E4 /* icon_pin_did_Click@2x.png */; };
+		3211E5D41729534D006356E4 /* YouImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211E5D31729534D006356E4 /* YouImageView.m */; };
 		321253681725253A0096ABC7 /* SunCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 321253651725253A0096ABC7 /* SunCoordinate.m */; };
 		321253691725253A0096ABC7 /* SunPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 321253671725253A0096ABC7 /* SunPosition.m */; };
 		322823BC171D360700211081 /* icon_current_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B3171D360700211081 /* icon_current_location@2x.png */; };
@@ -22,6 +22,8 @@
 		322823C2171D360700211081 /* icon_sun_rise.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B9171D360700211081 /* icon_sun_rise.png */; };
 		322823C3171D360700211081 /* icon_sun_set@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823BA171D360700211081 /* icon_sun_set@2x.png */; };
 		322823C4171D360700211081 /* icon_you@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823BB171D360700211081 /* icon_you@2x.png */; };
+		322B76531727F9CB004306EB /* CenterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76521727F9CB004306EB /* CenterAnnotationView.m */; };
+		322B76561727FE4C004306EB /* CenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76551727FE4C004306EB /* CenterAnnotation.m */; };
 		3254B6211715DA2800DBAEAD /* MoonSunCalcGobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */; };
 		32840A3F17155BEA00DDE99B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A3E17155BEA00DDE99B /* UIKit.framework */; };
 		32840A4117155BEA00DDE99B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A4017155BEA00DDE99B /* Foundation.framework */; };
@@ -38,10 +40,6 @@
 		32840A70171562A000DDE99B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A6F171562A000DDE99B /* MapKit.framework */; };
 		32840A771715649100DDE99B /* AnnotationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A761715649100DDE99B /* AnnotationPoint.m */; };
 		32840A7A171567D700DDE99B /* AnnotationPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A79171567D700DDE99B /* AnnotationPointView.m */; };
-		32840A8017156C6900DDE99B /* UserLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7B17156C6900DDE99B /* UserLocation.png */; };
-		32840A8117156C6900DDE99B /* MoonRise.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7C17156C6900DDE99B /* MoonRise.png */; };
-		32840A8217156C6900DDE99B /* MoonSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7D17156C6900DDE99B /* MoonSet.png */; };
-		32840A8317156C6900DDE99B /* mylocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A7E17156C6900DDE99B /* mylocation.png */; };
 		32840A871715723A00DDE99B /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A861715723A00DDE99B /* MapView.m */; };
 		32840A89171574FD00DDE99B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A88171574FC00DDE99B /* CoreLocation.framework */; };
 		32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE4DDE171E36AB006E8A05 /* ShareLocation.m */; };
@@ -52,8 +50,9 @@
 		3206FD16172635C500BF50CE /* MoonCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonCoordinate.m; sourceTree = "<group>"; };
 		3206FD17172635C500BF50CE /* MoonPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonPosition.h; sourceTree = "<group>"; };
 		3206FD18172635C500BF50CE /* MoonPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonPosition.m; sourceTree = "<group>"; };
-		320AFF8A1716B1D6006AD9FB /* SunRise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SunRise.png; sourceTree = "<group>"; };
-		320AFF8B1716B1D6006AD9FB /* SunSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SunSet.png; sourceTree = "<group>"; };
+		3211E5C41728D352006356E4 /* icon_pin_did_Click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pin_did_Click@2x.png"; sourceTree = "<group>"; };
+		3211E5D21729534D006356E4 /* YouImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouImageView.h; sourceTree = "<group>"; };
+		3211E5D31729534D006356E4 /* YouImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouImageView.m; sourceTree = "<group>"; };
 		321253641725253A0096ABC7 /* SunCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunCoordinate.h; sourceTree = "<group>"; };
 		321253651725253A0096ABC7 /* SunCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunCoordinate.m; sourceTree = "<group>"; };
 		321253661725253A0096ABC7 /* SunPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunPosition.h; sourceTree = "<group>"; };
@@ -67,6 +66,10 @@
 		322823B9171D360700211081 /* icon_sun_rise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_sun_rise.png; sourceTree = "<group>"; };
 		322823BA171D360700211081 /* icon_sun_set@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sun_set@2x.png"; sourceTree = "<group>"; };
 		322823BB171D360700211081 /* icon_you@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_you@2x.png"; sourceTree = "<group>"; };
+		322B76511727F9CB004306EB /* CenterAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterAnnotationView.h; sourceTree = "<group>"; };
+		322B76521727F9CB004306EB /* CenterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAnnotationView.m; sourceTree = "<group>"; };
+		322B76541727FE4C004306EB /* CenterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterAnnotation.h; sourceTree = "<group>"; };
+		322B76551727FE4C004306EB /* CenterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAnnotation.m; sourceTree = "<group>"; };
 		3254B61F1715DA2800DBAEAD /* MoonSunCalcGobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcGobal.h; sourceTree = "<group>"; };
 		3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonSunCalcGobal.m; sourceTree = "<group>"; };
 		32840A3A17155BEA00DDE99B /* MoonAndSunCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoonAndSunCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,10 +95,6 @@
 		32840A761715649100DDE99B /* AnnotationPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPoint.m; sourceTree = "<group>"; };
 		32840A78171567D700DDE99B /* AnnotationPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationPointView.h; sourceTree = "<group>"; };
 		32840A79171567D700DDE99B /* AnnotationPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPointView.m; sourceTree = "<group>"; };
-		32840A7B17156C6900DDE99B /* UserLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserLocation.png; sourceTree = "<group>"; };
-		32840A7C17156C6900DDE99B /* MoonRise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoonRise.png; sourceTree = "<group>"; };
-		32840A7D17156C6900DDE99B /* MoonSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoonSet.png; sourceTree = "<group>"; };
-		32840A7E17156C6900DDE99B /* mylocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mylocation.png; sourceTree = "<group>"; };
 		32840A851715723A00DDE99B /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		32840A861715723A00DDE99B /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		32840A88171574FC00DDE99B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -197,17 +196,6 @@
 		32840A6717155C9E00DDE99B /* Entity Model */ = {
 			isa = PBXGroup;
 			children = (
-				32840A6917155D2200DDE99B /* PositionEntity.h */,
-				32840A6A17155D2200DDE99B /* PositionEntity.m */,
-				32840A751715649100DDE99B /* AnnotationPoint.h */,
-				32840A761715649100DDE99B /* AnnotationPoint.m */,
-			);
-			name = "Entity Model";
-			sourceTree = "<group>";
-		};
-		32840A6817155CB900DDE99B /* View Model */ = {
-			isa = PBXGroup;
-			children = (
 				3206FD15172635C500BF50CE /* MoonCoordinate.h */,
 				3206FD16172635C500BF50CE /* MoonCoordinate.m */,
 				3206FD17172635C500BF50CE /* MoonPosition.h */,
@@ -216,10 +204,27 @@
 				321253651725253A0096ABC7 /* SunCoordinate.m */,
 				321253661725253A0096ABC7 /* SunPosition.h */,
 				321253671725253A0096ABC7 /* SunPosition.m */,
+				32840A6917155D2200DDE99B /* PositionEntity.h */,
+				32840A6A17155D2200DDE99B /* PositionEntity.m */,
+				32840A751715649100DDE99B /* AnnotationPoint.h */,
+				32840A761715649100DDE99B /* AnnotationPoint.m */,
+				322B76541727FE4C004306EB /* CenterAnnotation.h */,
+				322B76551727FE4C004306EB /* CenterAnnotation.m */,
+			);
+			name = "Entity Model";
+			sourceTree = "<group>";
+		};
+		32840A6817155CB900DDE99B /* View Model */ = {
+			isa = PBXGroup;
+			children = (
 				32840A851715723A00DDE99B /* MapView.h */,
 				32840A861715723A00DDE99B /* MapView.m */,
 				32840A78171567D700DDE99B /* AnnotationPointView.h */,
 				32840A79171567D700DDE99B /* AnnotationPointView.m */,
+				322B76511727F9CB004306EB /* CenterAnnotationView.h */,
+				322B76521727F9CB004306EB /* CenterAnnotationView.m */,
+				3211E5D21729534D006356E4 /* YouImageView.h */,
+				3211E5D31729534D006356E4 /* YouImageView.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -244,15 +249,10 @@
 				322823B6171D360700211081 /* icon_moon_rise@2x.png */,
 				322823B7171D360700211081 /* icon_moon_set@2x.png */,
 				322823B8171D360700211081 /* icon_pin@2x.png */,
+				3211E5C41728D352006356E4 /* icon_pin_did_Click@2x.png */,
 				322823B9171D360700211081 /* icon_sun_rise.png */,
 				322823BA171D360700211081 /* icon_sun_set@2x.png */,
 				322823BB171D360700211081 /* icon_you@2x.png */,
-				320AFF8A1716B1D6006AD9FB /* SunRise.png */,
-				320AFF8B1716B1D6006AD9FB /* SunSet.png */,
-				32840A7B17156C6900DDE99B /* UserLocation.png */,
-				32840A7C17156C6900DDE99B /* MoonRise.png */,
-				32840A7D17156C6900DDE99B /* MoonSet.png */,
-				32840A7E17156C6900DDE99B /* mylocation.png */,
 				32840A5017155BEA00DDE99B /* Default.png */,
 				32840A5217155BEA00DDE99B /* Default@2x.png */,
 				32840A5417155BEA00DDE99B /* Default-568h@2x.png */,
@@ -333,12 +333,6 @@
 				32840A5317155BEA00DDE99B /* Default@2x.png in Resources */,
 				32840A5517155BEA00DDE99B /* Default-568h@2x.png in Resources */,
 				32840A5B17155BEA00DDE99B /* MoonSunCalcViewController.xib in Resources */,
-				32840A8017156C6900DDE99B /* UserLocation.png in Resources */,
-				32840A8117156C6900DDE99B /* MoonRise.png in Resources */,
-				32840A8217156C6900DDE99B /* MoonSet.png in Resources */,
-				32840A8317156C6900DDE99B /* mylocation.png in Resources */,
-				320AFF8C1716B1D6006AD9FB /* SunRise.png in Resources */,
-				320AFF8D1716B1D6006AD9FB /* SunSet.png in Resources */,
 				322823BC171D360700211081 /* icon_current_location@2x.png in Resources */,
 				322823BD171D360700211081 /* icon_current_moon@2x.png in Resources */,
 				322823BE171D360700211081 /* icon_current_sun@2x.png in Resources */,
@@ -348,6 +342,7 @@
 				322823C2171D360700211081 /* icon_sun_rise.png in Resources */,
 				322823C3171D360700211081 /* icon_sun_set@2x.png in Resources */,
 				322823C4171D360700211081 /* icon_you@2x.png in Resources */,
+				3211E5C51728D352006356E4 /* icon_pin_did_Click@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +366,9 @@
 				321253691725253A0096ABC7 /* SunPosition.m in Sources */,
 				3206FD19172635C500BF50CE /* MoonCoordinate.m in Sources */,
 				3206FD1A172635C500BF50CE /* MoonPosition.m in Sources */,
+				322B76531727F9CB004306EB /* CenterAnnotationView.m in Sources */,
+				322B76561727FE4C004306EB /* CenterAnnotation.m in Sources */,
+				3211E5D41729534D006356E4 /* YouImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

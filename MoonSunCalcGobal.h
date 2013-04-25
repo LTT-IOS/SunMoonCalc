@@ -21,6 +21,9 @@
 @property float pointSetY;
 @property (nonatomic ,retain)NSDate *timeRiseSun;
 @property (nonatomic, retain)NSDate *timeSetSun;
+
+@property (nonatomic ,retain)NSDate *timeRiseMoon;
+@property (nonatomic, retain)NSDate *timeSetMoon;
 @property (nonatomic, retain) PositionEntity *positionEntity;
 - (void)getDate;
 - (void)computeMoonriseAndMoonSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng;

@@ -18,38 +18,30 @@
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
-        NSLog(@"lat = %f,long = %f",lat,lng);
         self.annotationPoint = annotation;
         dateCompute = date;
         SunRiseSelect = YES;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateCoordinate:) name:@"UpdateCoordinate" object:nil];
-        
-        
+
         moonSucCalc = [[MoonSunCalcGobal alloc]init];
-        
-//        [moonSucCalc computeMoonriseAndMoonSet:postionEntity];
+        [moonSucCalc computeMoonriseAndMoonSet:date withLatitude:lat withLongitude:lng];
         [moonSucCalc computeSunriseAndSunSet:date withLatitude:lat withLongitude:lng];
         position = moonSucCalc.positionEntity;
         
-        UIImage *imageCenter = [UIImage imageNamed:@"icon_pin@2x.png"];
-        UIImageView *imageViewCenter = [[UIImageView alloc]initWithFrame:CGRectMake(97, 84, 13, 23)];
-        imageViewCenter.image = imageCenter;
-        [self addSubview:imageViewCenter];
+        UIImage *moonRiseImage = [UIImage imageNamed:@"icon_moon_rise@2x.png"];
+        moonRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonRiseX - 25 , position.pointMoonRiseY - 32, 25, 32)];
+        moonRiseImageView.image = moonRiseImage;
+        [self addSubview:moonRiseImageView];
         
-//        UIImage *moonRiseImage = [UIImage imageNamed:@"icon_moon_rise@2x.png"];
-//        moonRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonRiseX - 25 , position.pointMoonRiseY - 32, 25, 32)];
-//        moonRiseImageView.image = moonRiseImage;
-//        [self addSubview:moonRiseImageView];
-//        
-//        UIImage *moonSetImage = [UIImage imageNamed:@"icon_moon_set@2x.png"];
-//        moonSetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonSetX, position.pointMoonSetY - 32, 25, 32)];
-//        moonSetImageView.image = moonSetImage;
-//        [self addSubview:moonSetImageView];
-//        
-//        UIImage *moonPointImage = [UIImage imageNamed:@"icon_current_moon@2x.png"];
-//        moonPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonX, position.pointMoonY , 20, 20)];
-//        moonPointImageView.image = moonPointImage;
-//        [self addSubview:moonPointImageView];
+        UIImage *moonSetImage = [UIImage imageNamed:@"icon_moon_set@2x.png"];
+        moonSetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonSetX, position.pointMoonSetY - 32, 25, 32)];
+        moonSetImageView.image = moonSetImage;
+        [self addSubview:moonSetImageView];
+        
+        UIImage *moonPointImage = [UIImage imageNamed:@"icon_current_moon@2x.png"];
+        moonPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonX, position.pointMoonY , 20, 20)];
+        moonPointImageView.image = moonPointImage;
+        [self addSubview:moonPointImageView];
         
         UIImage *sunRiseImage = [UIImage imageNamed:@"icon_sun_rise.png"];
         sunRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunRiseX - 25 , position.pointSunRiseY - 20, 25, 32)];
@@ -68,47 +60,38 @@
         [self updateContentView];
         self.frame = CGRectMake(0, 0, 205, 205);
         self.backgroundColor = [UIColor clearColor];
-                
     }
     return self;
 }
 
-
-
 - (void) drawRect:(CGRect)rect
 {
-//    CGContextRef contextMoonSet = UIGraphicsGetCurrentContext();
-//    CGContextSetStrokeColorWithColor(contextMoonSet, [UIColor grayColor].CGColor);
-//    CGContextSetLineWidth(contextMoonSet, 2.0);
-//    CGContextMoveToPoint(contextMoonSet, position.pointMoonSetX, position.pointMoonSetY);
-//    CGContextAddLineToPoint(contextMoonSet, 103, 103);
-//    CGContextStrokePath(contextMoonSet);
-//    
-//    CGContextRef contextMoonRise = UIGraphicsGetCurrentContext();
-//    CGContextSetStrokeColorWithColor(contextMoonRise, [UIColor cyanColor].CGColor);
-//    CGContextSetLineWidth(contextMoonRise, 2.0);
-//    CGContextMoveToPoint(contextMoonRise, 103, 103);
-//    CGContextAddLineToPoint(contextMoonRise, position.pointMoonRiseX, position.pointMoonRiseY);
-//    CGContextStrokePath(contextMoonRise);
-//    
-//    CGContextRef contextMoonPoint = UIGraphicsGetCurrentContext();
-//    CGContextSetStrokeColorWithColor(contextMoonPoint, [UIColor blueColor].CGColor);
-//    CGContextSetLineWidth(contextMoonPoint, 2.0);
-//    CGContextMoveToPoint(contextMoonPoint, 103, 103);
-//    CGContextAddLineToPoint(contextMoonPoint,position.pointMoonX,position.pointMoonY);
-//    CGContextStrokePath(contextMoonPoint);
+    CGContextRef contextMoonSet = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(contextMoonSet, [UIColor grayColor].CGColor);
+    CGContextSetLineWidth(contextMoonSet, 2.0);
+    CGContextMoveToPoint(contextMoonSet, position.pointMoonSetX, position.pointMoonSetY);
+    CGContextAddLineToPoint(contextMoonSet, 103, 103);
+    CGContextStrokePath(contextMoonSet);
+    
+    CGContextRef contextMoonRise = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(contextMoonRise, [UIColor cyanColor].CGColor);
+    CGContextSetLineWidth(contextMoonRise, 2.0);
+    CGContextMoveToPoint(contextMoonRise, 103, 103);
+    CGContextAddLineToPoint(contextMoonRise, position.pointMoonRiseX, position.pointMoonRiseY);
+    CGContextStrokePath(contextMoonRise);
+    
+    CGContextRef contextMoonPoint = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(contextMoonPoint, [UIColor blueColor].CGColor);
+    CGContextSetLineWidth(contextMoonPoint, 2.0);
+    CGContextMoveToPoint(contextMoonPoint, 103, 103);
+    CGContextAddLineToPoint(contextMoonPoint,position.pointMoonX,position.pointMoonY);
+    CGContextStrokePath(contextMoonPoint);
+    
     CGContextRef contextSunRise = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(contextSunRise, [UIColor orangeColor].CGColor);
     CGContextSetLineWidth(contextSunRise, 2.0);
     CGContextMoveToPoint(contextSunRise, 103, 103);
-    if (SunRiseSelect == NO) {
-        CGContextAddLineToPoint(contextSunRise, 103, 103);
-
-    }
-    else{
-        CGContextAddLineToPoint(contextSunRise, position.pointSunRiseX, position.pointSunRiseY);
-
-    }
+    CGContextAddLineToPoint(contextSunRise, position.pointSunRiseX, position.pointSunRiseY);
     CGContextStrokePath(contextSunRise);
 
 
@@ -137,23 +120,11 @@
 
 }
 #pragma mark - touche move view
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *aTouch = [[event allTouches]anyObject];
-    CGPoint pointLocation = [aTouch locationInView:self.superview];
-    [self setCenter:pointLocation];
-    
-    CGPoint location = [aTouch locationInView:self.window];
-    CGPoint point;
-    point.x = location.x;
-    point.y = location.y - 20;
-    NSValue *value = [NSValue valueWithCGPoint:point];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdatePoint" object:value];
-}
+
 
 -(void)didUpdateCoordinate:(NSNotification *)notifi{
     CLLocation *newLocation = (CLLocation *)[notifi object];
-//    [moonSucCalc computeMoonriseAndMoonSet:position];
+    [moonSucCalc computeMoonriseAndMoonSet:dateCompute withLatitude:newLocation.coordinate.latitude withLongitude:newLocation.coordinate.longitude];
     [moonSucCalc computeSunriseAndSunSet:dateCompute withLatitude:newLocation.coordinate.latitude withLongitude:newLocation.coordinate.longitude];
     position = moonSucCalc.positionEntity;
     [self updateContentView];
@@ -194,7 +165,6 @@
         newCenter.y = position.pointMoonY ;
         moonPointImageView.center = newCenter;
     }
-    
     
 // set up for Sun
     if (self.annotationPoint.HiddenSunRise == YES) {

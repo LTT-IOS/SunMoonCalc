@@ -9,6 +9,7 @@
 #import "MapView.h"
 #import "AnnotationPointView.h"
 #import "ShareLocation.h"
+#import "CenterAnnotationView.h"
 
 @implementation MapView
 @synthesize annotationPoint,userLocation;
@@ -23,14 +24,18 @@
 
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdatePoint:) name:@"UpdatePoint" object:nil];
 
-        
         mapViewController = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
         [mapViewController setMapType:MKMapTypeStandard];
         mapViewController.delegate = self;
         [mapViewController setShowsUserLocation:YES];
         [self addSubview:mapViewController];
-
-        [self addPointAnnotation:37.030102 withLongitude:-115.780453];
+        
+        
+        imageViewYou = [[YouImageView alloc]initWithFrame:CGRectMake(0 , 0, 25, 32)];
+        [self addSubview:imageViewYou];
+        imageViewYou.hidden = YES;
+        
+        [self addPointAnnotation:35.675147 withLongitude:139.694823];
         
         UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         buttonHidenSunRise.frame = CGRectMake(250, 400, 60, 50);
@@ -59,11 +64,31 @@
     return self;
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    imageViewYou.hidden = NO;
+    UITouch *aTouch = [[event allTouches]anyObject];
+    CGPoint pointLocation = [aTouch locationInView:self.superview];
+    [imageViewYou setCenter:pointLocation];
+    
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextSetLineWidth(context, 2.0);
+    CGContextMoveToPoint(context, locationPointYou.x, locationPointYou.y);
+    CGContextAddLineToPoint(context, locationPointCenter.x, locationPointCenter.y);
+    CGContextStrokePath(context);
+}
+
 -(void)didUpdatePoint:(NSNotification *)notifi{
     NSValue *value = (NSValue *)[notifi object];
     CGPoint point = [value CGPointValue];
     CLLocationCoordinate2D coord2 = [self.mapViewController convertPoint:point toCoordinateFromView:self.mapViewController];
     annotationPoint.coordinate = coord2;
+    centerAnnotation.coordinate = coord2;
     coordinate2D = coord2;
     CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:coord2.latitude longitude:coord2.longitude];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdateCoordinate" object:newLocation];
@@ -84,35 +109,47 @@
     region.span = span;
     region.center = coord;
     [self.mapViewController setRegion:region animated:YES];
+    centerAnnotation = [[CenterAnnotation alloc]initWithName:@"center" coordinate:coord];
     annotationPoint = [[AnnotationPoint alloc]initWithName:@"i'm here" coordinate:coord];
+    [self.mapViewController addAnnotation:centerAnnotation];
     [self.mapViewController addAnnotation:annotationPoint];
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-     annotationView = nil;
-    static NSString *identifier = @"moonAnnotation";
+    CenterAnnotationView * centerAnnotationView = nil;
+    if ([annotation isKindOfClass:[CenterAnnotation class]]) {
+        static NSString *idfr = @"center";
+        centerAnnotationView = (CenterAnnotationView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:idfr];
+        if (centerAnnotationView == nil) {
+            centerAnnotationView = [[CenterAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:idfr withDate:[NSDate dateWithTimeIntervalSinceNow:7*60*60] withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+        }
+        return centerAnnotationView;
+    }
+    annotationView = nil;
     if ([annotation isKindOfClass:[AnnotationPoint class]]) {
+        static NSString *identifier = @"AnnotationView";
         annotationView = (AnnotationPointView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
+            
             annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:[NSDate date] withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
         }
+        return annotationView;
     }
-    return annotationView;
+    return nil;
 }
 
 
-- (void)drawRect:(CGRect)rect
-{
-
-    CGContextRef contextSunPoint = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(contextSunPoint, [UIColor purpleColor].CGColor);
-    CGContextSetLineWidth(contextSunPoint, 2.0);
-    CGContextMoveToPoint(contextSunPoint, locationPoint.x, locationPoint.y);
-    CGContextAddLineToPoint(contextSunPoint,location.x,location.y );
-    CGContextStrokePath(contextSunPoint);
-}
-
+//- (void)drawRect:(CGRect)rect
+//{
+//
+//    CGContextRef contextSunPoint = UIGraphicsGetCurrentContext();
+//    CGContextSetStrokeColorWithColor(contextSunPoint, [UIColor purpleColor].CGColor);
+//    CGContextSetLineWidth(contextSunPoint, 2.0);
+//    CGContextMoveToPoint(contextSunPoint, locationPoint.x, locationPoint.y);
+//    CGContextAddLineToPoint(contextSunPoint,location.x,location.y );
+//    CGContextStrokePath(contextSunPoint);
+//}
 
 #pragma mark - update Location
 
@@ -125,11 +162,14 @@
 - (IBAction)didClickToButtonHiddenPoint:(id)sender
 {
     if (hiddenAnnotation == NO) {
+        [[self.mapViewController viewForAnnotation:centerAnnotation] setHidden:YES];
         [[self.mapViewController viewForAnnotation:annotationPoint] setHidden:YES];
         hiddenAnnotation = YES;
     }
     else{
+        [[self.mapViewController viewForAnnotation:centerAnnotation] setHidden:NO];
         [[self.mapViewController viewForAnnotation:annotationPoint] setHidden:NO];
+        
         hiddenAnnotation = NO;
     }
 }

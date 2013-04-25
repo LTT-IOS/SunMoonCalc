@@ -12,13 +12,18 @@
 #import "MoonSunCalcGobal.h"
 #import <CoreLocation/CoreLocation.h>
 #import "AnnotationPointView.h"
+#import "CenterAnnotation.h"
+#import "YouImageView.h"
 @class MoonSunCalcGobal;
 @interface MapView : UIView<MKMapViewDelegate>{
     UIImageView *youPointImageView ;
-    CGPoint locationPoint;
-    CGPoint location;
+    CGPoint locationPointCenter;
+    CGPoint locationPointYou;
     CLLocation *userLocation;
+    YouImageView *imageViewYou;
     AnnotationPointView *annotationView;
+    CenterAnnotation *centerAnnotation;
+
     BOOL hiddenAnnotation;
     CLLocationCoordinate2D coordinate2D;
 
