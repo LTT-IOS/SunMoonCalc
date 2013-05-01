@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
 //        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateCoordinate:) name:@"UpdateCoordinate" object:nil];
+        [self setBackgroundColor:[UIColor redColor]];
 
         self.frame = CGRectMake(0, 0, 13, 26);
         image = [UIImage imageNamed:@"icon_pin_did_Click@2x.png"];

@@ -14,6 +14,7 @@
 #import "AnnotationPointView.h"
 #import "CenterAnnotation.h"
 #import "YouImageView.h"
+
 @class MoonSunCalcGobal;
 @interface MapView : UIView<MKMapViewDelegate>{
     UIImageView *youPointImageView ;
@@ -23,14 +24,18 @@
     YouImageView *imageViewYou;
     AnnotationPointView *annotationView;
     CenterAnnotation *centerAnnotation;
-
+    MoonSunCalcGobal *moonSunCalc;
     BOOL hiddenAnnotation;
     CLLocationCoordinate2D coordinate2D;
 
 }
+@property (nonatomic,strong)  UISlider *dateSlider;
+@property (nonatomic,strong)  UISlider *timeSlider;
+@property (nonatomic,strong)  UILabel *dateLabel;
+@property (nonatomic,strong)  UILabel *timeLabel;
+
 @property (nonatomic, retain) AnnotationPointView *annotationView;
 @property (nonatomic, retain) CLLocation *userLocation;
-
 @property (nonatomic, retain) MKMapView *mapViewController;
 @property (nonatomic, retain)AnnotationPoint *annotationPoint;
 @property (nonatomic, retain) PositionEntity *positionEntity;

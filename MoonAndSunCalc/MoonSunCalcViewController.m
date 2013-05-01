@@ -9,15 +9,6 @@
 #import "MoonSunCalcViewController.h"
 #import "MapView.h"
 
-
-
-@interface MoonSunCalcViewController (){
-    double Rise_az ;
-    double Set_az ;
-}
-
-@end
-
 @implementation MoonSunCalcViewController
 
 - (void)viewDidLoad
@@ -38,4 +29,8 @@
 
 
 
+- (void)viewDidUnload {
+    [self setViewXib:nil];
+    [super viewDidUnload];
+}
 @end
