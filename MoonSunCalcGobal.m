@@ -135,7 +135,7 @@ BOOL SunSet = NO;
 
 - (void) setSunPositionWithTime:(SunPosition *)sunPostion withDate:(NSDate *)date
 {
-    NSLog(@"time rise : %@ ,now = %@, time set : %@",timeRiseSun,date,timeSetSun);
+//    NSLog(@"time rise : %@ ,now = %@, time set : %@",timeRiseSun,date,timeSetSun);
 
 //    if ((([date compare:timeRiseSun]== NSOrderedAscending)||([date compare:timeSetSun]== NSOrderedDescending)) ) {
 //        positionEntity.pointSunX = 103;
@@ -143,7 +143,6 @@ BOOL SunSet = NO;
     
         if ((!Sunrise)&&(!SunSet))                 // neither sunrise nor sunset
         {
-            NSLog(@"ca 2 k co");
             if (VHzS[2] < 0){
                 positionEntity.pointSunX = 103;
                 positionEntity.pointSunY = 103;
@@ -159,8 +158,6 @@ BOOL SunSet = NO;
         }
         else if ((!Sunrise)||(!SunSet))                                    // sunrise or sunset
         {
-            NSLog(@"1 trong 2 k co");
-
             if (!Sunrise) {
                 if ([timeSetSun compare:date] == NSOrderedAscending) {
                     positionEntity.pointSunX = 103;
@@ -224,14 +221,13 @@ BOOL SunSet = NO;
     return moonCoor;
 }
 
-- (MoonPosition *) getMoonPositionWithDate:(NSDate*)date andLatitude:(double)lat andLongitude:(double)lng {
+- (MoonPosition *) getMoonPositionWithDate:(NSDate*)date andLatitude:(double)lat andLongitude:(double)lng wihtBool:(BOOL)moonRiseBig{
 
     double lw = DR * -lng;
     double phi = DR * lat;
     double d = [self toDays:date];
     
     MoonCoordinate *c = [self getMoonCoords:d];
-//    NSLog(@"cright asen = %f, cdeclination = %f, cdistance = %f",c.rightAscension,c.declination,c.distance);
     double H = [self getSiderealTimeWithDayNumber:d andObserverLongitude:lw] - c.rightAscension;
     double h = [self getAltitudeWithHourAngle:H observerLatitude:phi andDeclination:c.declination];
     
@@ -239,78 +235,90 @@ BOOL SunSet = NO;
     h = h + DR * 0.017 / tan(h + DR * 10.26 / (h + DR * 5.10));
     MoonPosition *moonPos = [[MoonPosition alloc]initWithAzimuth:[self getAzimuthWithHourAngle:H observerLatitude:phi andDeclination:c.declination] andAltitude:h andDistance:c.distance];
 //    NSLog(@"azimuth = %f,altitude = %f,distance = %f",moonPos.azimuth,moonPos.altitude,moonPos.distance);
-    [self setMoonPositionWithTime:moonPos withDate:date];
+    [self setMoonPositionWithTime:moonPos withDate:date withbool:moonRiseBig];
     return moonPos;
     
 }
 
 
-- (void) setMoonPositionWithTime:(MoonPosition *)moonPostion withDate:(NSDate *)date
+- (void) setMoonPositionWithTime:(MoonPosition *)moonPostion withDate:(NSDate *)date withbool:(BOOL)moonRiseBig
 {
-//    NSLog(@"time rise : %@ ,now = %@, time set : %@",timeRiseMoon,date,timeSetMoon);
-
-//    if ((([date compare:timeRiseMoon]== NSOrderedAscending)||([date compare:timeSetMoon]== NSOrderedDescending)) ) {
-//        positionEntity.pointMoonX = 103;
-//        positionEntity.pointMoonY = 103;
+    NSLog(@"time rise : %@ ,now = %@, time set : %@",timeRiseMoon,date,timeSetMoon);
+    if ((!MoonRise)&&(!MoonSet))                 // neither sunrise nor sunset
+    {
+        if (VHzM[2] < 0){
+            positionEntity.pointMoonX = 103;
+            positionEntity.pointMoonY = 103;
+        }
+        else if (VHzM[2] >= 0){
+            double angle =  moonPostion.azimuth - M_PI_2;
+            float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
+            float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
+            positionEntity.pointMoonX = x;
+            positionEntity.pointMoonY = y;
+        }
+    }
     
-        if ((!MoonRise)&&(!MoonSet))                 // neither sunrise nor sunset
-        {
-            if (VHzM[2] < 0){
+    else if ((!MoonRise)||(!MoonSet))                                    // sunrise or sunset
+    {
+        if (!MoonRise) {
+            if (([date compare:timeSetMoon]== NSOrderedDescending) ) {
                 positionEntity.pointMoonX = 103;
                 positionEntity.pointMoonY = 103;
             }
-            else if (VHzM[2] >= 0){
+            else
+            {
                 double angle =  moonPostion.azimuth - M_PI_2;
                 float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
                 float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
                 positionEntity.pointMoonX = x;
                 positionEntity.pointMoonY = y;
             }
-            
         }
-    
-        else if ((!MoonRise)||(!MoonSet))                                    // sunrise or sunset
-        {
-            if (!MoonRise) {
-                if ([timeSetMoon compare:date]== NSOrderedAscending) {
-                    positionEntity.pointMoonX = 103;
-                    positionEntity.pointMoonY = 103;
-                }
-                else
-                {
-                    double angle =  moonPostion.azimuth - M_PI_2;
-                    float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
-                    float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
-                    positionEntity.pointMoonX = x;
-                    positionEntity.pointMoonY = y;
-                }
+        else if(!MoonSet) {
+            if ([date compare:timeRiseMoon]== NSOrderedAscending) {
+                positionEntity.pointMoonX = 103;
+                positionEntity.pointMoonY = 103;
             }
-            if (!MoonSet) {
-                if ([date compare:timeRiseMoon]== NSOrderedAscending) {
-                    positionEntity.pointMoonX = 103;
-                    positionEntity.pointMoonY = 103;
-                }
-                else{
-                    double angle =  moonPostion.azimuth - M_PI_2;
-                    float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
-                    float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
-                    positionEntity.pointMoonX = x;
-                    positionEntity.pointMoonY = y;
-                    
-                }
+            else {
+                double angle =  moonPostion.azimuth - M_PI_2;
+                float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
+                float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
+                positionEntity.pointMoonX = x;
+                positionEntity.pointMoonY = y;
+                
             }
-       
         }
-    
-    
-        else if((MoonRise) && (MoonSet)){
-        double angle =  moonPostion.azimuth - M_PI_2;
-        float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
-        float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
-        positionEntity.pointMoonX = x;
-        positionEntity.pointMoonY = y;
     }
-    
+        
+    else if((MoonRise) && (MoonSet)){
+            if (moonRiseBig == YES) {
+                if ((([date compare:timeRiseMoon]== NSOrderedAscending)&&([date compare:timeSetMoon]== NSOrderedDescending)) ) {
+                    positionEntity.pointMoonX = 103;
+                    positionEntity.pointMoonY = 103;
+                }
+                else {
+                    double angle =  moonPostion.azimuth - M_PI_2;
+                    float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
+                    float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
+                    positionEntity.pointMoonX = x;
+                    positionEntity.pointMoonY = y;
+                }
+            }
+            else {
+                if ((([date compare:timeRiseMoon]== NSOrderedAscending)||([date compare:timeSetMoon]== NSOrderedDescending)) ) {
+                    positionEntity.pointMoonX = 103;
+                    positionEntity.pointMoonY = 103;
+                }
+                else {
+                    double angle =  moonPostion.azimuth - M_PI_2;
+                    float x = 103 + 100 *cos(angle)*cos(moonPostion.altitude);
+                    float y = 103 + 100 *sin(angle)*cos(moonPostion.altitude);
+                    positionEntity.pointMoonX = x;
+                    positionEntity.pointMoonY = y;
+                }
+            }
+        }
 }
 #pragma mark - compute point Rise and Set in Cricle of moon and sun
 
@@ -419,6 +427,7 @@ BOOL SunSet = NO;
 #pragma mark - compute moonrise and moon set
 
 - (void)computeMoonriseAndMoonSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng{
+    NSLog(@"lat = %f, long = %f",lat,lng);
     Rise_azM = 0.0;
     Set_azM = 0.0;
     Rise_timeM[0] = 0.0;
@@ -426,25 +435,23 @@ BOOL SunSet = NO;
     Set_timeM[0] = 0.0;
     Set_timeM[1] = 0.0;
     VHzM[2] = 0.0;
-//    NSLog(@"date = %@",date);
-
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     
-//    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-//    double timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:date] / 3600.0;
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    double timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:date] / 3600.0;
     double x = lng;
     double zone = round(-x/15.0);
-//    double timeZoneInterVal = (timeZoneOffset + zone);
-//    NSDate * dateLocation = [NSDate dateWithTimeInterval:-zone*60*60 sinceDate:date];
+    NSLog(@"zone = %f",zone);
+    NSDate *dateCompute = [NSDate dateWithTimeInterval:-(zone + timeZoneOffset)*60*60 sinceDate:date];
+    NSDate *dateC1 = [NSDate dateWithTimeInterval:-(timeZoneOffset*60*60) sinceDate:dateCompute];
 
-    NSString *day = [self conVertDateToStringDay:date];
-
+    NSString *day = [self conVertDateToStringDay:dateC1];
     int dayValue = [day intValue];
-    NSString *month = [self conVertDateToStringMonth:date];
+    NSString *month = [self conVertDateToStringMonth:dateC1];
     int monthValue = [month intValue];
-    NSString *year = [self conVertDateToStringYear:date];
+    NSString *year = [self conVertDateToStringYear:dateC1];
     int yearValue = [year intValue];
     
     double jd = [self julian_day:yearValue withMonth:monthValue withDay:dayValue] - 2451545.0;
@@ -493,50 +500,39 @@ BOOL SunSet = NO;
     }
     
     NSString *dateStringRise = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,[NSString stringWithFormat:@"%d",Rise_timeM[0]],[NSString stringWithFormat:@"%d",Rise_timeM[1]]];
-//    NSLog(@"day = %@",day);
-//    NSLog(@"date string rise = %@",dateStringRise);
     NSDate *dateMoonRise = [dateFormatter dateFromString:dateStringRise];
-        timeRiseMoon = [NSDate dateWithTimeInterval:zone*60*60 sinceDate:dateMoonRise];
+        timeRiseMoon = [NSDate dateWithTimeInterval:(zone)*60*60 sinceDate:dateMoonRise];
         
     NSString *dateStringSet = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,[NSString stringWithFormat:@"%d",Set_timeM[0]],[NSString stringWithFormat:@"%d",Set_timeM[1]]];
-    
     NSDate *dateMoonSet = [dateFormatter dateFromString:dateStringSet];
-        timeSetMoon = [NSDate dateWithTimeInterval:zone*60*60 sinceDate:dateMoonSet];
-        
-    if ([timeSetMoon compare:timeRiseMoon] == NSOrderedAscending) {
-            timeSetMoon = [NSDate dateWithTimeInterval:24*60*60 sinceDate:timeSetMoon];
-    }
-//    NSString *dayMoonRise = [self conVertDateToStringDay:timeRiseMoon];
-//    int dayMoonRiseValue = [dayMoonRise intValue];
-//    NSLog(@"day rise = %d, day = %d",dayMoonRiseValue,dayValue);
-//    if (dayMoonRiseValue > dayValue) {
-//        NSDate *dateCompute = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];
-//        [self computeMoonriseAndMoonSet:dateCompute withLatitude:lat withLongitude:lng];
-//    }
-//    else {
-        [self getMoonPositionWithDate:date andLatitude:lat andLongitude:lng];
-        
-        
-        if (MoonRise == YES) {
-            [self computePointInCricle:Rise_azM withRiseOrSet:MoonRiseSelected];
-            //        NSLog(@"rise az = %f",Rise_azM);
-        }
-        else {
-            positionEntity.pointMoonRiseX = 103;
-            positionEntity.pointMoonRiseY = 103;
-        }
-        if (MoonSet == YES) {
-            //        NSLog(@"set az = %f",Set_azM);
-            [self computePointInCricle:Set_azM withRiseOrSet:MoonSetSelected];
-        }
-        else
-        {
-            positionEntity.pointMoonSetX = 103;
-            positionEntity.pointMoonSetY = 103;
-        }
+        timeSetMoon = [NSDate dateWithTimeInterval:(zone)*60*60 sinceDate:dateMoonSet];
+    NSDate *dateC = [NSDate dateWithTimeInterval:zone*60*60 sinceDate:dateCompute];
 
-//    }
     
+    if ([timeRiseMoon compare:timeSetMoon] == NSOrderedDescending) {
+        [self getMoonPositionWithDate:dateC andLatitude:lat andLongitude:lng wihtBool:YES];
+
+    }
+    else
+    {
+        [self getMoonPositionWithDate:dateC andLatitude:lat andLongitude:lng wihtBool:NO];
+    }
+    
+    if (MoonRise == YES) {
+        [self computePointInCricle:Rise_azM withRiseOrSet:MoonRiseSelected];
+    }
+    else {
+        positionEntity.pointMoonRiseX = 103;
+        positionEntity.pointMoonRiseY = 103;
+    }
+    if (MoonSet == YES) {
+        [self computePointInCricle:Set_azM withRiseOrSet:MoonSetSelected];
+    }
+    else
+    {
+        positionEntity.pointMoonSetX = 103;
+        positionEntity.pointMoonSetY = 103;
+    }
 }
 
 
@@ -712,13 +708,17 @@ BOOL SunSet = NO;
     
     double x = lng;
     double zone = round(-x/15.0);
-    NSString *day = [self conVertDateToStringDay:date];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    double timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:date] / 3600.0;
+    NSDate *dateCompute = [NSDate dateWithTimeInterval:-(zone + timeZoneOffset)*60*60 sinceDate:date];
+    NSDate *dateC1 = [NSDate dateWithTimeInterval:-(timeZoneOffset*60*60) sinceDate:dateCompute];
+    
+    NSString *day = [self conVertDateToStringDay:dateC1];
     int dayValue = [day intValue]  ;
-    NSString *month = [self conVertDateToStringMonth:date];
+    NSString *month = [self conVertDateToStringMonth:dateC1];
     int monthValue = [month intValue];
-    NSString *year = [self conVertDateToStringYear:date];
+    NSString *year = [self conVertDateToStringYear:dateC1];
     int yearValue = [year intValue];
-//    NSLog(@"day = %@",day);
 
     int k;
     double jd = [self julian_day:yearValue withMonth:monthValue withDay:dayValue] - 2451545.0;
@@ -764,14 +764,13 @@ BOOL SunSet = NO;
     
     NSString *dateStringRise = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,[NSString stringWithFormat:@"%d",Rise_timeS[0]],[NSString stringWithFormat:@"%d",Rise_timeS[1]]];
     NSDate *dateSunRise = [dateFormatter dateFromString:dateStringRise];
-//    NSLog(@"date string rise = %@",dateStringRise);
 
     timeRiseSun = [NSDate dateWithTimeInterval:zone*60*60 sinceDate:dateSunRise];
     NSString *dateStringSet = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00",year,month,day,[NSString stringWithFormat:@"%d",Set_timeS[0]],[NSString stringWithFormat:@"%d",Set_timeS[1]]];
     NSDate *dateSunSet = [dateFormatter dateFromString:dateStringSet];
      timeSetSun = [NSDate dateWithTimeInterval:zone*60*60 sinceDate:dateSunSet];
-//    NSLog(@"time rise :%@ , time set :%@",timeRiseSun,timeSetSun);
-    [self getSunPositionWithDate:date andLatitude:lat andLongitude:lng];
+    NSDate *dateC = [NSDate dateWithTimeInterval:zone*60*60 sinceDate:dateCompute];
+    [self getSunPositionWithDate:dateC andLatitude:lat andLongitude:lng];
 
     if (Sunrise == YES) {
 

@@ -41,8 +41,7 @@
 		32840A7A171567D700DDE99B /* AnnotationPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A79171567D700DDE99B /* AnnotationPointView.m */; };
 		32840A871715723A00DDE99B /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A861715723A00DDE99B /* MapView.m */; };
 		32840A89171574FD00DDE99B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A88171574FC00DDE99B /* CoreLocation.framework */; };
-		328E047A1730AF5900F12098 /* MoonSunCalcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328E04781730AF5900F12098 /* MoonSunCalcViewController.xib */; };
-		328E04901730C98C00F12098 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328E048F1730C98C00F12098 /* View.xib */; };
+		3284731C1732049B00E908D6 /* MoonSun.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3284731B1732049B00E908D6 /* MoonSun.xib */; };
 		32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE4DDE171E36AB006E8A05 /* ShareLocation.m */; };
 /* End PBXBuildFile section */
 
@@ -98,8 +97,7 @@
 		32840A851715723A00DDE99B /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		32840A861715723A00DDE99B /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		32840A88171574FC00DDE99B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		328E04791730AF5900F12098 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MoonAndSunCalc/en.lproj/MoonSunCalcViewController.xib; sourceTree = "<group>"; };
-		328E048F1730C98C00F12098 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		3284731B1732049B00E908D6 /* MoonSun.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoonSun.xib; sourceTree = "<group>"; };
 		32FE4DDD171E36AB006E8A05 /* ShareLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLocation.h; sourceTree = "<group>"; };
 		32FE4DDE171E36AB006E8A05 /* ShareLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +121,7 @@
 		32840A2F17155BEA00DDE99B = {
 			isa = PBXGroup;
 			children = (
+				3284731B1732049B00E908D6 /* MoonSun.xib */,
 				32840A4D17155BEA00DDE99B /* MoonSunCalcAppDelegate.h */,
 				32840A4E17155BEA00DDE99B /* MoonSunCalcAppDelegate.m */,
 				32840A6517155C4E00DDE99B /* Classes */,
@@ -273,8 +272,6 @@
 		32840A74171563BE00DDE99B /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
-				328E04781730AF5900F12098 /* MoonSunCalcViewController.xib */,
-				328E048F1730C98C00F12098 /* View.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -345,8 +342,7 @@
 				322823C3171D360700211081 /* icon_sun_set@2x.png in Resources */,
 				322823C4171D360700211081 /* icon_you@2x.png in Resources */,
 				3211E5C51728D352006356E4 /* icon_pin_did_Click@2x.png in Resources */,
-				328E047A1730AF5900F12098 /* MoonSunCalcViewController.xib in Resources */,
-				328E04901730C98C00F12098 /* View.xib in Resources */,
+				3284731C1732049B00E908D6 /* MoonSun.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,14 +382,6 @@
 			);
 			name = InfoPlist.strings;
 			path = MoonAndSunCalc;
-			sourceTree = "<group>";
-		};
-		328E04781730AF5900F12098 /* MoonSunCalcViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				328E04791730AF5900F12098 /* en */,
-			);
-			name = MoonSunCalcViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

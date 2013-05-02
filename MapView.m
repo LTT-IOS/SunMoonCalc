@@ -59,31 +59,31 @@ CGRect timeOriginFrame;
         [self addSubview:imageViewYou];
         imageViewYou.hidden = YES;
         
-        [self addPointAnnotation:35.675147 withLongitude:139.694823];
+        [self addPointAnnotation:47.989922 withLongitude:-46.406250];
         
-        UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buttonHidenSunRise.frame = CGRectMake(250, 400, 60, 50);
-        [buttonHidenSunRise setTitle:@"Rise" forState:UIControlStateNormal];
-        [buttonHidenSunRise addTarget:self action:@selector(didClickToButtonHiddenSunRise:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:buttonHidenSunRise];
-        
-        UIButton *buttonHidenSunSet = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buttonHidenSunSet.frame = CGRectMake(180, 400, 60, 50);
-        [buttonHidenSunSet setTitle:@"Set" forState:UIControlStateNormal];
-        [buttonHidenSunSet addTarget:self action:@selector(didClickToButtonHiddenSunSet:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:buttonHidenSunSet];
-        
-        UIButton *buttonHidenSunPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buttonHidenSunPoint.frame = CGRectMake(110, 400, 60, 50);
-        [buttonHidenSunPoint setTitle:@"Point" forState:UIControlStateNormal];
-        [buttonHidenSunPoint addTarget:self action:@selector(didClickToButtonHiddenSunPoint:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:buttonHidenSunPoint];
-        
-        UIButton *buttonHidenAnnotation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buttonHidenAnnotation.frame = CGRectMake(40, 400, 60, 50);
-        [buttonHidenAnnotation setTitle:@"hidden" forState:UIControlStateNormal];
-        [buttonHidenAnnotation addTarget:self action:@selector(didClickToButtonHiddenPoint:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:buttonHidenAnnotation];
+//        UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        buttonHidenSunRise.frame = CGRectMake(250, 400, 60, 50);
+//        [buttonHidenSunRise setTitle:@"Rise" forState:UIControlStateNormal];
+//        [buttonHidenSunRise addTarget:self action:@selector(didClickToButtonHiddenSunRise:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:buttonHidenSunRise];
+//        
+//        UIButton *buttonHidenSunSet = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        buttonHidenSunSet.frame = CGRectMake(180, 400, 60, 50);
+//        [buttonHidenSunSet setTitle:@"Set" forState:UIControlStateNormal];
+//        [buttonHidenSunSet addTarget:self action:@selector(didClickToButtonHiddenSunSet:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:buttonHidenSunSet];
+//        
+//        UIButton *buttonHidenSunPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        buttonHidenSunPoint.frame = CGRectMake(110, 400, 60, 50);
+//        [buttonHidenSunPoint setTitle:@"Point" forState:UIControlStateNormal];
+//        [buttonHidenSunPoint addTarget:self action:@selector(didClickToButtonHiddenSunPoint:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:buttonHidenSunPoint];
+//        
+//        UIButton *buttonHidenAnnotation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        buttonHidenAnnotation.frame = CGRectMake(40, 400, 60, 50);
+//        [buttonHidenAnnotation setTitle:@"hidden" forState:UIControlStateNormal];
+//        [buttonHidenAnnotation addTarget:self action:@selector(didClickToButtonHiddenPoint:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:buttonHidenAnnotation];
 //        [self setupSlider];
     }
     return self;
@@ -271,12 +271,17 @@ CGRect timeOriginFrame;
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    NSDate *date = [dateFormatter dateFromString:@"2013-05-01 9:44:00"];
+    
     CenterAnnotationView * centerAnnotationView = nil;
     if ([annotation isKindOfClass:[CenterAnnotation class]]) {
         static NSString *idfr = @"center";
         centerAnnotationView = (CenterAnnotationView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:idfr];
         if (centerAnnotationView == nil) {
-            centerAnnotationView = [[CenterAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:idfr withDate:[NSDate date] withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+            centerAnnotationView = [[CenterAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:idfr withDate:date withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
         }
         return centerAnnotationView;
     }
@@ -286,7 +291,7 @@ CGRect timeOriginFrame;
         annotationView = (AnnotationPointView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             
-            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:[NSDate date] withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:date withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
         }
         return annotationView;
     }
