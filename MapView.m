@@ -14,20 +14,12 @@
 @implementation MapView
 @synthesize annotationPoint,userLocation;
 @synthesize positionEntity,mapViewController;
-@synthesize moonSunCalc,annotationView;
-@synthesize dateSlider;
-@synthesize timeSlider;
-@synthesize dateLabel;
-@synthesize timeLabel;
-
-
+@synthesize annotationView;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        moonSunCalc = [[MoonSunCalcGobal alloc]init];
-        self.backgroundColor = [UIColor clearColor];
         userLocation = [[CLLocation alloc]init];
         userLocation = [[ShareLocation shareMyInstance] getOldLocation];
 
@@ -41,12 +33,16 @@
         [mapViewController setShowsUserLocation:YES];
         [self addSubview:mapViewController];
         
-        
         imageViewYou = [[YouImageView alloc]initWithFrame:CGRectMake(0 , 0, 25, 32)];
         [self addSubview:imageViewYou];
         imageViewYou.hidden = YES;
         
         [self addPointAnnotation:47.989922 withLongitude:-46.406250];
+        
+//        UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchesToView)];
+//        recognizer.numberOfTapsRequired = 1;
+//        recognizer.delegate = self;
+//        [self addGestureRecognizer:recognizer];
         
 //        UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 //        buttonHidenSunRise.frame = CGRectMake(250, 400, 60, 50);
@@ -76,21 +72,16 @@
     return self;
 }
 
-
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    imageViewYou.hidden = NO;
-//    UITouch *aTouch = [[event allTouches]anyObject];
-//    CGPoint pointLocation = [aTouch locationInView:self.mapViewController];
-//    locationPointYou = pointLocation;
-//    NSLog(@"location x = %f, location y = %f",pointLocation.x,pointLocation.y);
-//    [self setNeedsDisplay];
-//    
-//}
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *aTouch = [[event allTouches]anyObject];
+    CGPoint startPoint = [aTouch locationInView:self.mapViewController];
+    NSLog(@"x = %f, y = %f",startPoint.x, startPoint.y);
+}
 
 //- (void)drawRect:(CGRect)rect
 //{
-//    NSLog(@"x1 = %f, y1 = %f, x2 = %f, y2 = %f",locationPointYou.x,locationPointYou.y,locationPointCenter.x, locationPointCenter.y);
+////    NSLog(@"x1 = %f, y1 = %f, x2 = %f, y2 = %f",locationPointYou.x,locationPointYou.y,locationPointCenter.x, locationPointCenter.y);
 //    CGContextRef context = UIGraphicsGetCurrentContext();
 //    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
 //    CGContextSetLineWidth(context, 2.0);

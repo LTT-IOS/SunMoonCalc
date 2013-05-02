@@ -28,40 +28,46 @@
         [moonSucCalc computeSunriseAndSunSet:date withLatitude:lat withLongitude:lng];
         position = moonSucCalc.positionEntity;
         
-        UIImage *moonRiseImage = [UIImage imageNamed:@"icon_moon_rise@2x.png"];
-        moonRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonRiseX - 25 , position.pointMoonRiseY - 32, 25, 32)];
-        moonRiseImageView.image = moonRiseImage;
-        [self addSubview:moonRiseImageView];
-        
-        UIImage *moonSetImage = [UIImage imageNamed:@"icon_moon_set@2x.png"];
-        moonSetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonSetX, position.pointMoonSetY - 32, 25, 32)];
-        moonSetImageView.image = moonSetImage;
-        [self addSubview:moonSetImageView];
-        
-        UIImage *moonPointImage = [UIImage imageNamed:@"icon_current_moon@2x.png"];
-        moonPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonX, position.pointMoonY , 20, 20)];
-        moonPointImageView.image = moonPointImage;
-        [self addSubview:moonPointImageView];
-        
-        UIImage *sunRiseImage = [UIImage imageNamed:@"icon_sun_rise.png"];
-        sunRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunRiseX - 25 , position.pointSunRiseY - 20, 25, 32)];
-        sunRiseImageView.image = sunRiseImage;
-        [self addSubview:sunRiseImageView];
-        
-        UIImage *sunSetImage = [UIImage imageNamed:@"icon_sun_set@2x.png"];
-        sunSetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunSetX - 25 , position.pointSunSetY - 32, 25, 32)];
-        sunSetImageView.image = sunSetImage;
-        [self addSubview:sunSetImageView];
-        UIImage *sunPointImage = [UIImage imageNamed:@"icon_current_sun@2x.png"];
-        sunPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunX, position.pointSunY, 20, 20)];
-        sunPointImageView.image = sunPointImage;
-        [self addSubview:sunPointImageView];
-
+        [self initContentView];
         [self updateContentView];
-        self.frame = CGRectMake(0, 0, 205, 205);
-        self.backgroundColor = [UIColor clearColor];
+
     }
     return self;
+}
+
+- (void)initContentView
+{
+    UIImage *moonRiseImage = [UIImage imageNamed:@"icon_moon_rise@2x.png"];
+    moonRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonRiseX - 25 , position.pointMoonRiseY - 32, 25, 32)];
+    moonRiseImageView.image = moonRiseImage;
+    [self addSubview:moonRiseImageView];
+    
+    UIImage *moonSetImage = [UIImage imageNamed:@"icon_moon_set@2x.png"];
+    moonSetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonSetX, position.pointMoonSetY - 32, 25, 32)];
+    moonSetImageView.image = moonSetImage;
+    [self addSubview:moonSetImageView];
+    
+    UIImage *moonPointImage = [UIImage imageNamed:@"icon_current_moon@2x.png"];
+    moonPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointMoonX, position.pointMoonY , 20, 20)];
+    moonPointImageView.image = moonPointImage;
+    [self addSubview:moonPointImageView];
+    
+    UIImage *sunRiseImage = [UIImage imageNamed:@"icon_sun_rise.png"];
+    sunRiseImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunRiseX - 25 , position.pointSunRiseY - 20, 25, 32)];
+    sunRiseImageView.image = sunRiseImage;
+    [self addSubview:sunRiseImageView];
+    
+    UIImage *sunSetImage = [UIImage imageNamed:@"icon_sun_set@2x.png"];
+    sunSetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunSetX - 25 , position.pointSunSetY - 32, 25, 32)];
+    sunSetImageView.image = sunSetImage;
+    [self addSubview:sunSetImageView];
+    UIImage *sunPointImage = [UIImage imageNamed:@"icon_current_sun@2x.png"];
+    sunPointImageView = [[UIImageView alloc]initWithFrame:CGRectMake(position.pointSunX, position.pointSunY, 20, 20)];
+    sunPointImageView.image = sunPointImage;
+    [self addSubview:sunPointImageView];
+    
+    self.frame = CGRectMake(0, 0, 205, 205);
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void) drawRect:(CGRect)rect
