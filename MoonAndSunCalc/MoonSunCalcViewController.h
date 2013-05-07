@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomSlider.h"
 
 @interface MoonSunCalcViewController : UIViewController
 @property (strong, nonatomic) IBOutletCollection(UIView) UIView *ViewXib;
-@property (nonatomic,strong) IBOutlet UISlider *dateSlider;
-@property (nonatomic,strong) IBOutlet UISlider *timeSlider;
-@property (nonatomic,strong) IBOutlet UILabel *dateLabel;
-@property (nonatomic,strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic,strong) CustomSlider *dateSlider;
+@property (nonatomic,strong) CustomSlider *timeSlider;
 @end

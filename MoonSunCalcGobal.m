@@ -615,6 +615,7 @@ BOOL SunSet = NO;
 
 - (void)computeSunriseAndSunSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng
 {
+    NSLog(@"date : %@, lat = %f, long = %f",date,lat,lng);
     Rise_azS = 0.0;
     Set_azS = 0.0;
     Rise_timeS[0] = 0.0;

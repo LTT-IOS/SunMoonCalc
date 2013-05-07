@@ -13,11 +13,11 @@
 @interface MoonSunCalcGobal : NSObject{
     
 }
-@property (nonatomic ,retain)NSDate *timeRiseSun;
-@property (nonatomic, retain)NSDate *timeSetSun;
-@property (nonatomic ,retain)NSDate *timeRiseMoon;
-@property (nonatomic, retain)NSDate *timeSetMoon;
-@property (nonatomic, retain) PositionEntity *positionEntity;
+@property (nonatomic ,strong)NSDate *timeRiseSun;
+@property (nonatomic, strong)NSDate *timeSetSun;
+@property (nonatomic ,strong)NSDate *timeRiseMoon;
+@property (nonatomic, strong)NSDate *timeSetMoon;
+@property (nonatomic, strong) PositionEntity *positionEntity;
 - (void)computeMoonriseAndMoonSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng;
 - (void)computeSunriseAndSunSet:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng;
 

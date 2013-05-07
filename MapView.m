@@ -31,13 +31,14 @@
         [mapViewController setMapType:MKMapTypeStandard];
         mapViewController.delegate = self;
         [mapViewController setShowsUserLocation:YES];
-        [self addSubview:mapViewController];
+//        [self.mapViewController setUserInteractionEnabled:NO];
+        [self addSubview:self.mapViewController];
         
         imageViewYou = [[YouImageView alloc]initWithFrame:CGRectMake(0 , 0, 25, 32)];
         [self addSubview:imageViewYou];
         imageViewYou.hidden = YES;
         
-        [self addPointAnnotation:47.989922 withLongitude:-46.406250];
+        [self addPointAnnotation:21 withLongitude:105];
         
 //        UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchesToView)];
 //        recognizer.numberOfTapsRequired = 1;
@@ -72,12 +73,15 @@
     return self;
 }
 
-- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *aTouch = [[event allTouches]anyObject];
-    CGPoint startPoint = [aTouch locationInView:self.mapViewController];
-    NSLog(@"x = %f, y = %f",startPoint.x, startPoint.y);
-}
+//- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UITouch *aTouch = [[event allTouches]anyObject];
+//    CGPoint startPoint = [aTouch locationInView:self.mapViewController];
+//    locationPointYou = startPoint;
+//    imageViewYou.center = startPoint;
+//    imageViewYou.hidden = NO;
+//    NSLog(@"x = %f, y = %f",startPoint.x, startPoint.y);
+//}
 
 //- (void)drawRect:(CGRect)rect
 //{
@@ -127,7 +131,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    NSDate *date = [dateFormatter dateFromString:@"2013-05-02 11:44:00"];
+    NSDate *date = [dateFormatter dateFromString:@"2013-05-07 17:00:00"];
     
     CenterAnnotationView * centerAnnotationView = nil;
     if ([annotation isKindOfClass:[CenterAnnotation class]]) {

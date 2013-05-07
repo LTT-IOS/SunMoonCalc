@@ -8,7 +8,7 @@
 
 #import "MoonSunCalcAppDelegate.h"
 
-#import "MoonSunCalcViewController.h"
+#import "MainViewController.h"
 
 #import "ShareLocation.h"
 
@@ -20,7 +20,7 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[MoonSunCalcViewController alloc] initWithNibName:@"MoonSunCalcViewController" bundle:nil];
+    self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

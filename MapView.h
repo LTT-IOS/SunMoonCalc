@@ -29,9 +29,9 @@
 
 }
 
-@property (nonatomic, retain) AnnotationPointView *annotationView;
-@property (nonatomic, retain) CLLocation *userLocation;
-@property (nonatomic, retain) MKMapView *mapViewController;
-@property (nonatomic, retain)AnnotationPoint *annotationPoint;
-@property (nonatomic, retain) PositionEntity *positionEntity;
+@property (nonatomic, strong) AnnotationPointView *annotationView;
+@property (nonatomic, strong) CLLocation *userLocation;
+@property (nonatomic, strong) MKMapView *mapViewController;
+@property (nonatomic, strong)AnnotationPoint *annotationPoint;
+@property (nonatomic, strong) PositionEntity *positionEntity;
 @end

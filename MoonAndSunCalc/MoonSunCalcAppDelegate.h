@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class MoonSunCalcViewController;
+@class MainViewController;
 
 @interface MoonSunCalcAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) MoonSunCalcViewController *viewController;
+@property (strong, nonatomic) MainViewController *viewController;
 
 @end

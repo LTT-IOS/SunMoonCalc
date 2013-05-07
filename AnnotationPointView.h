@@ -23,11 +23,12 @@
     BOOL SunRiseSelect;
 
 }
-@property (nonatomic, retain)AnnotationPoint *annotationPoint;
-@property (nonatomic, retain) NSDate *dateCompute;
+@property (nonatomic, strong)AnnotationPoint *annotationPoint;
+@property (nonatomic, strong) NSDate *dateCompute;
+@property (nonatomic, strong) CLLocation *locationCompute;
 @property BOOL SunRiseSelect;
-@property PositionEntity *position;
-@property (nonatomic, retain) MoonSunCalcGobal *moonSucCalc;
+@property (weak) PositionEntity *position;
+@property (nonatomic, strong) MoonSunCalcGobal *moonSucCalc;
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng ;
 - (void)updateContentView;
 

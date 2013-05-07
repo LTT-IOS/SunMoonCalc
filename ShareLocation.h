@@ -13,8 +13,8 @@
     CLLocation *userLocation ;
     CLLocationManager *locationManager;
 }
-@property(nonatomic,retain) CLLocation *userLocation ;
-@property(nonatomic,retain) CLLocationManager *locationManager;
+@property(nonatomic,strong) CLLocation *userLocation ;
+@property(nonatomic,strong) CLLocationManager *locationManager;
 + (ShareLocation *)shareMyInstance;
 - (CLLocation *)getOldLocation;
 -(void)startUpdate;

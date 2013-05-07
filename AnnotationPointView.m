@@ -13,15 +13,18 @@
 
 @implementation AnnotationPointView
 @synthesize moonSucCalc;
-@synthesize position,SunRiseSelect,dateCompute,annotationPoint;
+@synthesize position,SunRiseSelect,dateCompute,annotationPoint,locationCompute;
 
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
+        locationCompute = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
         self.annotationPoint = annotation;
         dateCompute = date;
         SunRiseSelect = YES;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateCoordinate:) name:@"UpdateCoordinate" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateDate:) name:@"UpdateDate" object:nil];
+        
 
         moonSucCalc = [[MoonSunCalcGobal alloc]init];
         [moonSucCalc computeMoonriseAndMoonSet:date withLatitude:lat withLongitude:lng];
@@ -130,8 +133,19 @@
 
 -(void)didUpdateCoordinate:(NSNotification *)notifi{
     CLLocation *newLocation = (CLLocation *)[notifi object];
+    locationCompute = newLocation;
     [moonSucCalc computeMoonriseAndMoonSet:dateCompute withLatitude:newLocation.coordinate.latitude withLongitude:newLocation.coordinate.longitude];
     [moonSucCalc computeSunriseAndSunSet:dateCompute withLatitude:newLocation.coordinate.latitude withLongitude:newLocation.coordinate.longitude];
+    position = moonSucCalc.positionEntity;
+    [self updateContentView];
+}
+
+- (void)didUpdateDate:(NSNotification *)notification
+{
+    NSDate *date = (NSDate *)[notification object];
+    dateCompute = date;
+    [moonSucCalc computeMoonriseAndMoonSet:date withLatitude:locationCompute.coordinate.latitude withLongitude:locationCompute.coordinate.longitude];
+    [moonSucCalc computeSunriseAndSunSet:date withLatitude:locationCompute.coordinate.latitude withLongitude:locationCompute.coordinate.longitude];
     position = moonSucCalc.positionEntity;
     [self updateContentView];
 }
