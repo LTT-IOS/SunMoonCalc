@@ -24,7 +24,6 @@
 		322823C4171D360700211081 /* icon_you@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823BB171D360700211081 /* icon_you@2x.png */; };
 		322B76531727F9CB004306EB /* CenterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76521727F9CB004306EB /* CenterAnnotationView.m */; };
 		322B76561727FE4C004306EB /* CenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76551727FE4C004306EB /* CenterAnnotation.m */; };
-		323BD4A31738965900D2AA89 /* MoonSunCalc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323BD4A11738965900D2AA89 /* MoonSunCalc.xib */; };
 		323BD4B81738A22000D2AA89 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323BD4B71738A22000D2AA89 /* MainViewController.m */; };
 		3254B6211715DA2800DBAEAD /* MoonSunCalcGobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */; };
 		32840A3F17155BEA00DDE99B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A3E17155BEA00DDE99B /* UIKit.framework */; };
@@ -36,7 +35,6 @@
 		32840A5117155BEA00DDE99B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5017155BEA00DDE99B /* Default.png */; };
 		32840A5317155BEA00DDE99B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5217155BEA00DDE99B /* Default@2x.png */; };
 		32840A5517155BEA00DDE99B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32840A5417155BEA00DDE99B /* Default-568h@2x.png */; };
-		32840A5817155BEA00DDE99B /* MoonSunCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A5717155BEA00DDE99B /* MoonSunCalcViewController.m */; };
 		32840A6B17155D2200DDE99B /* PositionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A6A17155D2200DDE99B /* PositionEntity.m */; };
 		32840A70171562A000DDE99B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A6F171562A000DDE99B /* MapKit.framework */; };
 		32840A771715649100DDE99B /* AnnotationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 32840A761715649100DDE99B /* AnnotationPoint.m */; };
@@ -45,6 +43,7 @@
 		32840A89171574FD00DDE99B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A88171574FC00DDE99B /* CoreLocation.framework */; };
 		32847332173263CB00E908D6 /* UIMovableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3284732F173263CB00E908D6 /* UIMovableLabel.m */; };
 		32847333173263CB00E908D6 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32847331173263CB00E908D6 /* CustomSlider.m */; };
+		32F5318E1739F41C0077092F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F5318D1739F41C0077092F /* MainViewController.xib */; };
 		32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE4DDE171E36AB006E8A05 /* ShareLocation.m */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +72,6 @@
 		322B76521727F9CB004306EB /* CenterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAnnotationView.m; sourceTree = "<group>"; };
 		322B76541727FE4C004306EB /* CenterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterAnnotation.h; sourceTree = "<group>"; };
 		322B76551727FE4C004306EB /* CenterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAnnotation.m; sourceTree = "<group>"; };
-		323BD4A21738965900D2AA89 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MoonSunCalc.xib; sourceTree = "<group>"; };
 		323BD4B61738A22000D2AA89 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		323BD4B71738A22000D2AA89 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		3254B61F1715DA2800DBAEAD /* MoonSunCalcGobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcGobal.h; sourceTree = "<group>"; };
@@ -91,8 +89,6 @@
 		32840A5017155BEA00DDE99B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = MoonAndSunCalc/Default.png; sourceTree = "<group>"; };
 		32840A5217155BEA00DDE99B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "MoonAndSunCalc/Default@2x.png"; sourceTree = "<group>"; };
 		32840A5417155BEA00DDE99B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "MoonAndSunCalc/Default-568h@2x.png"; sourceTree = "<group>"; };
-		32840A5617155BEA00DDE99B /* MoonSunCalcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcViewController.h; sourceTree = "<group>"; };
-		32840A5717155BEA00DDE99B /* MoonSunCalcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonSunCalcViewController.m; sourceTree = "<group>"; };
 		32840A6917155D2200DDE99B /* PositionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionEntity.h; sourceTree = "<group>"; };
 		32840A6A17155D2200DDE99B /* PositionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionEntity.m; sourceTree = "<group>"; };
 		32840A6F171562A000DDE99B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -107,6 +103,7 @@
 		3284732F173263CB00E908D6 /* UIMovableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMovableLabel.m; sourceTree = "<group>"; };
 		32847330173263CB00E908D6 /* CustomSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSlider.h; sourceTree = "<group>"; };
 		32847331173263CB00E908D6 /* CustomSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
+		32F5318D1739F41C0077092F /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		32FE4DDD171E36AB006E8A05 /* ShareLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLocation.h; sourceTree = "<group>"; };
 		32FE4DDE171E36AB006E8A05 /* ShareLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,8 +161,6 @@
 			children = (
 				323BD4B61738A22000D2AA89 /* MainViewController.h */,
 				323BD4B71738A22000D2AA89 /* MainViewController.m */,
-				32840A5617155BEA00DDE99B /* MoonSunCalcViewController.h */,
-				32840A5717155BEA00DDE99B /* MoonSunCalcViewController.m */,
 			);
 			name = "Controllers Model";
 			path = MoonAndSunCalc;
@@ -286,7 +281,7 @@
 		32840A74171563BE00DDE99B /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
-				323BD4A11738965900D2AA89 /* MoonSunCalc.xib */,
+				32F5318D1739F41C0077092F /* MainViewController.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -357,7 +352,7 @@
 				322823C3171D360700211081 /* icon_sun_set@2x.png in Resources */,
 				322823C4171D360700211081 /* icon_you@2x.png in Resources */,
 				3211E5C51728D352006356E4 /* icon_pin_did_Click@2x.png in Resources */,
-				323BD4A31738965900D2AA89 /* MoonSunCalc.xib in Resources */,
+				32F5318E1739F41C0077092F /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +365,6 @@
 			files = (
 				32840A4B17155BEA00DDE99B /* main.m in Sources */,
 				32840A4F17155BEA00DDE99B /* MoonSunCalcAppDelegate.m in Sources */,
-				32840A5817155BEA00DDE99B /* MoonSunCalcViewController.m in Sources */,
 				32840A6B17155D2200DDE99B /* PositionEntity.m in Sources */,
 				32840A771715649100DDE99B /* AnnotationPoint.m in Sources */,
 				32840A7A171567D700DDE99B /* AnnotationPointView.m in Sources */,
@@ -393,14 +387,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		323BD4A11738965900D2AA89 /* MoonSunCalc.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				323BD4A21738965900D2AA89 /* en */,
-			);
-			name = MoonSunCalc.xib;
-			sourceTree = "<group>";
-		};
 		32840A4717155BEA00DDE99B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -37,7 +37,6 @@ CGRect currentFrame;
     currentDate = [NSDate date];
     component = [[NSDateComponents alloc] init];
     formatter = [[NSDateFormatter alloc] init];
-
     [formatter setDateFormat:dateStyle];
     factor = factorValue;
 
