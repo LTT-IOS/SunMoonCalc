@@ -43,6 +43,14 @@
 		32840A89171574FD00DDE99B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A88171574FC00DDE99B /* CoreLocation.framework */; };
 		32847332173263CB00E908D6 /* UIMovableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3284732F173263CB00E908D6 /* UIMovableLabel.m */; };
 		32847333173263CB00E908D6 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32847331173263CB00E908D6 /* CustomSlider.m */; };
+		32E8F01A173B8C58006C56BF /* PlaceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F019173B8C58006C56BF /* PlaceEntity.m */; };
+		32E8F01E173B8C65006C56BF /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F01D173B8C65006C56BF /* Utility.m */; };
+		32E8F032173B8EFC006C56BF /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F027173B8EFC006C56BF /* NSObject+SBJSON.m */; };
+		32E8F033173B8EFC006C56BF /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F029173B8EFC006C56BF /* NSString+SBJSON.m */; };
+		32E8F034173B8EFC006C56BF /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F02B173B8EFC006C56BF /* SBJSON.m */; };
+		32E8F035173B8EFC006C56BF /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F02D173B8EFC006C56BF /* SBJsonBase.m */; };
+		32E8F036173B8EFC006C56BF /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F02F173B8EFC006C56BF /* SBJsonParser.m */; };
+		32E8F037173B8EFC006C56BF /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F031173B8EFC006C56BF /* SBJsonWriter.m */; };
 		32F5318E1739F41C0077092F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F5318D1739F41C0077092F /* MainViewController.xib */; };
 		32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE4DDE171E36AB006E8A05 /* ShareLocation.m */; };
 /* End PBXBuildFile section */
@@ -103,6 +111,23 @@
 		3284732F173263CB00E908D6 /* UIMovableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMovableLabel.m; sourceTree = "<group>"; };
 		32847330173263CB00E908D6 /* CustomSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSlider.h; sourceTree = "<group>"; };
 		32847331173263CB00E908D6 /* CustomSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
+		32E8F018173B8C58006C56BF /* PlaceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceEntity.h; sourceTree = "<group>"; };
+		32E8F019173B8C58006C56BF /* PlaceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceEntity.m; sourceTree = "<group>"; };
+		32E8F01C173B8C65006C56BF /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		32E8F01D173B8C65006C56BF /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		32E8F025173B8EFC006C56BF /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		32E8F026173B8EFC006C56BF /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		32E8F027173B8EFC006C56BF /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		32E8F028173B8EFC006C56BF /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		32E8F029173B8EFC006C56BF /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		32E8F02A173B8EFC006C56BF /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		32E8F02B173B8EFC006C56BF /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		32E8F02C173B8EFC006C56BF /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		32E8F02D173B8EFC006C56BF /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		32E8F02E173B8EFC006C56BF /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		32E8F02F173B8EFC006C56BF /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		32E8F030173B8EFC006C56BF /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		32E8F031173B8EFC006C56BF /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		32F5318D1739F41C0077092F /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		32FE4DDD171E36AB006E8A05 /* ShareLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLocation.h; sourceTree = "<group>"; };
 		32FE4DDE171E36AB006E8A05 /* ShareLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLocation.m; sourceTree = "<group>"; };
@@ -130,6 +155,7 @@
 				32840A4D17155BEA00DDE99B /* MoonSunCalcAppDelegate.h */,
 				32840A4E17155BEA00DDE99B /* MoonSunCalcAppDelegate.m */,
 				32840A6517155C4E00DDE99B /* Classes */,
+				32E8F023173B8E76006C56BF /* Libraries */,
 				32840A71171562DB00DDE99B /* Resources */,
 				32840A3D17155BEA00DDE99B /* Frameworks */,
 				32840A3B17155BEA00DDE99B /* Products */,
@@ -191,6 +217,8 @@
 		32840A6617155C9100DDE99B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				32E8F01C173B8C65006C56BF /* Utility.h */,
+				32E8F01D173B8C65006C56BF /* Utility.m */,
 				3254B61F1715DA2800DBAEAD /* MoonSunCalcGobal.h */,
 				3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */,
 				32FE4DDD171E36AB006E8A05 /* ShareLocation.h */,
@@ -202,10 +230,8 @@
 		32840A6717155C9E00DDE99B /* Entity Model */ = {
 			isa = PBXGroup;
 			children = (
-				3284732E173263CB00E908D6 /* UIMovableLabel.h */,
-				3284732F173263CB00E908D6 /* UIMovableLabel.m */,
-				32847330173263CB00E908D6 /* CustomSlider.h */,
-				32847331173263CB00E908D6 /* CustomSlider.m */,
+				32E8F018173B8C58006C56BF /* PlaceEntity.h */,
+				32E8F019173B8C58006C56BF /* PlaceEntity.m */,
 				3206FD15172635C500BF50CE /* MoonCoordinate.h */,
 				3206FD16172635C500BF50CE /* MoonCoordinate.m */,
 				3206FD17172635C500BF50CE /* MoonPosition.h */,
@@ -235,6 +261,10 @@
 				322B76521727F9CB004306EB /* CenterAnnotationView.m */,
 				3211E5D21729534D006356E4 /* YouImageView.h */,
 				3211E5D31729534D006356E4 /* YouImageView.m */,
+				3284732E173263CB00E908D6 /* UIMovableLabel.h */,
+				3284732F173263CB00E908D6 /* UIMovableLabel.m */,
+				32847330173263CB00E908D6 /* CustomSlider.h */,
+				32847331173263CB00E908D6 /* CustomSlider.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -284,6 +314,34 @@
 				32F5318D1739F41C0077092F /* MainViewController.xib */,
 			);
 			name = Nibs;
+			sourceTree = "<group>";
+		};
+		32E8F023173B8E76006C56BF /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				32E8F024173B8EDC006C56BF /* SBJSon */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		32E8F024173B8EDC006C56BF /* SBJSon */ = {
+			isa = PBXGroup;
+			children = (
+				32E8F025173B8EFC006C56BF /* JSON.h */,
+				32E8F026173B8EFC006C56BF /* NSObject+SBJSON.h */,
+				32E8F027173B8EFC006C56BF /* NSObject+SBJSON.m */,
+				32E8F028173B8EFC006C56BF /* NSString+SBJSON.h */,
+				32E8F029173B8EFC006C56BF /* NSString+SBJSON.m */,
+				32E8F02A173B8EFC006C56BF /* SBJSON.h */,
+				32E8F02B173B8EFC006C56BF /* SBJSON.m */,
+				32E8F02C173B8EFC006C56BF /* SBJsonBase.h */,
+				32E8F02D173B8EFC006C56BF /* SBJsonBase.m */,
+				32E8F02E173B8EFC006C56BF /* SBJsonParser.h */,
+				32E8F02F173B8EFC006C56BF /* SBJsonParser.m */,
+				32E8F030173B8EFC006C56BF /* SBJsonWriter.h */,
+				32E8F031173B8EFC006C56BF /* SBJsonWriter.m */,
+			);
+			name = SBJSon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,6 +439,14 @@
 				32847332173263CB00E908D6 /* UIMovableLabel.m in Sources */,
 				32847333173263CB00E908D6 /* CustomSlider.m in Sources */,
 				323BD4B81738A22000D2AA89 /* MainViewController.m in Sources */,
+				32E8F01A173B8C58006C56BF /* PlaceEntity.m in Sources */,
+				32E8F01E173B8C65006C56BF /* Utility.m in Sources */,
+				32E8F032173B8EFC006C56BF /* NSObject+SBJSON.m in Sources */,
+				32E8F033173B8EFC006C56BF /* NSString+SBJSON.m in Sources */,
+				32E8F034173B8EFC006C56BF /* SBJSON.m in Sources */,
+				32E8F035173B8EFC006C56BF /* SBJsonBase.m in Sources */,
+				32E8F036173B8EFC006C56BF /* SBJsonParser.m in Sources */,
+				32E8F037173B8EFC006C56BF /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,11 +27,10 @@
         locationPointCenter.x = 160;
         locationPointCenter.y = 230;
 
-        mapViewController = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+        mapViewController = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 420)];
         [mapViewController setMapType:MKMapTypeStandard];
         mapViewController.delegate = self;
         [mapViewController setShowsUserLocation:YES];
-//        [self.mapViewController setUserInteractionEnabled:NO];
         [self addSubview:self.mapViewController];
         
         imageViewYou = [[YouImageView alloc]initWithFrame:CGRectMake(0 , 0, 25, 32)];
@@ -39,6 +38,7 @@
         imageViewYou.hidden = YES;
         
         [self addPointAnnotation:21 withLongitude:105];
+    
         
 //        UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchesToView)];
 //        recognizer.numberOfTapsRequired = 1;
@@ -73,26 +73,6 @@
     return self;
 }
 
-//- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    UITouch *aTouch = [[event allTouches]anyObject];
-//    CGPoint startPoint = [aTouch locationInView:self.mapViewController];
-//    locationPointYou = startPoint;
-//    imageViewYou.center = startPoint;
-//    imageViewYou.hidden = NO;
-//    NSLog(@"x = %f, y = %f",startPoint.x, startPoint.y);
-//}
-
-//- (void)drawRect:(CGRect)rect
-//{
-////    NSLog(@"x1 = %f, y1 = %f, x2 = %f, y2 = %f",locationPointYou.x,locationPointYou.y,locationPointCenter.x, locationPointCenter.y);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-//    CGContextSetLineWidth(context, 2.0);
-//    CGContextMoveToPoint(context, 0, 0);
-//    CGContextAddLineToPoint(context, 200, 200);
-//    CGContextStrokePath(context);
-//}
 
 -(void)didUpdatePoint:(NSNotification *)notifi{
     NSValue *value = (NSValue *)[notifi object];
@@ -128,17 +108,18 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    NSDate *date = [dateFormatter dateFromString:@"2013-05-07 17:00:00"];
+    
+    NSDate *date = [NSDate date];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    int timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:date] / 3600;
+    NSDate *dateInput = [NSDate dateWithTimeIntervalSinceNow:timeZoneOffset*60*60];
     
     CenterAnnotationView * centerAnnotationView = nil;
     if ([annotation isKindOfClass:[CenterAnnotation class]]) {
         static NSString *idfr = @"center";
         centerAnnotationView = (CenterAnnotationView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:idfr];
         if (centerAnnotationView == nil) {
-            centerAnnotationView = [[CenterAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:idfr withDate:date withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+            centerAnnotationView = [[CenterAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:idfr withDate:dateInput withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
         }
         return centerAnnotationView;
     }
@@ -148,7 +129,7 @@
         annotationView = (AnnotationPointView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             
-            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:date withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+            annotationView = [[AnnotationPointView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withDate:dateInput withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
         }
         return annotationView;
     }
@@ -163,6 +144,7 @@
     userLocation = nil;
     userLocation = [[CLLocation alloc]initWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
 }
+
 
 #pragma mark - Hidden.
 - (IBAction)didClickToButtonHiddenPoint:(id)sender

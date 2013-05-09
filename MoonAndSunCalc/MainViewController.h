@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CustomSlider.h"
 
-@interface MainViewController : UIViewController<CustomSliderDelegate>
+@interface MainViewController : UIViewController<CustomSliderDelegate,UISearchBarDelegate>
 {
     NSDateFormatter *dateFormatter;
+    NSMutableData *dataPlace;
+    NSMutableArray *arrayPlaceEntity;
+    UISearchBar *searchBarPlace;
+
 
 }
 @property(nonatomic, strong) CustomSlider *dateSlider;

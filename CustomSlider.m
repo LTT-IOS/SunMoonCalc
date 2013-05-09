@@ -69,14 +69,6 @@ NSCalendar *calendar;
     timeString = paramSender.label.text;
     
     [self updateValueString:paramSender withValueString:timeString];
-    
-    
-//    if (paramSender.tag == 0) {
-//        dateString = paramSender.label.text;
-//    }
-//    if (paramSender.tag == 1) {
-//        timeString = paramSender.label.text;
-//    }
 
 }
 
