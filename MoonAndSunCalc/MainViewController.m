@@ -23,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -35,18 +35,18 @@
     arrayPlaceEntity = [[NSMutableArray alloc]init];
     UIBarButtonItem * buttonDone = [[UIBarButtonItem alloc]initWithTitle:@"Search" style:UIBarButtonItemStyleDone target:self action:@selector(didchangeTextSearchBar:)];
     self.navigationItem.rightBarButtonItem = buttonDone;
-//    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = YES;
     
     searchBarPlace =[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
     [searchBarPlace setDelegate:self];
-    [self.view addSubview:searchBarPlace];
+//    [self.view addSubview:searchBarPlace];
 
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     
-    MapView *mapView = [[MapView alloc]initWithFrame:CGRectMake(0, 40, 320, 420)];
+    MapView *mapView = [[MapView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
     [self.view addSubview:mapView];
     [self.view sendSubviewToBack:mapView];
     
@@ -73,11 +73,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return TRUE;
+-(BOOL)shouldAutorotate
+{
+    return NO;
 }
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait;
+}
+
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+#pragma mark - setupslider
+
 - (void)didChangeValue:(CustomSlider *)customSlider withValueString:(NSString *)valueString
 {
     if (customSlider.tag == 0) {
@@ -91,7 +101,8 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdateDate" object:currentDate];
 }
 
-#pragma mark - get Data Place By Text
+
+#pragma mark - get Data and parser Place By Text
 
 -(void)getPlaceDateWithText:(NSString*)textSearch{
     NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&sensor=true&key=AIzaSyDjQt2mhVtMaLcjqtoC6ttU_y9e9K1iHb4",textSearch];
@@ -142,6 +153,7 @@
     }
     NSLog(@"results :%@",arrayResults);
 }
+
 #pragma mark - searchBar Delegate
 - (void)didchangeTextSearchBar:(UISearchBar *)searchBar
 {

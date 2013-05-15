@@ -10,6 +10,7 @@
 #import "AnnotationPointView.h"
 #import "ShareLocation.h"
 #import "CenterAnnotationView.h"
+#import "BackgroudMapView.h"
 
 @implementation MapView
 @synthesize annotationPoint,userLocation;
@@ -22,12 +23,12 @@
     if (self) {
         userLocation = [[CLLocation alloc]init];
         userLocation = [[ShareLocation shareMyInstance] getOldLocation];
-
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdatePoint:) name:@"UpdatePoint" object:nil];
+        
         locationPointCenter.x = 160;
         locationPointCenter.y = 230;
 
-        mapViewController = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 420)];
+        mapViewController = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
         [mapViewController setMapType:MKMapTypeStandard];
         mapViewController.delegate = self;
         [mapViewController setShowsUserLocation:YES];
@@ -37,42 +38,27 @@
         [self addSubview:imageViewYou];
         imageViewYou.hidden = YES;
         
-        [self addPointAnnotation:21 withLongitude:105];
-    
+        BackgroudMapView *backgroundView = [[BackgroudMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+        [self addSubview:backgroundView];
+
+        [self addPointAnnotation:userLocation.coordinate.latitude withLongitude:userLocation.coordinate.longitude];
+        [self drawLine];
         
-//        UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchesToView)];
-//        recognizer.numberOfTapsRequired = 1;
-//        recognizer.delegate = self;
-//        [self addGestureRecognizer:recognizer];
-        
-//        UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        buttonHidenSunRise.frame = CGRectMake(250, 400, 60, 50);
-//        [buttonHidenSunRise setTitle:@"Rise" forState:UIControlStateNormal];
-//        [buttonHidenSunRise addTarget:self action:@selector(didClickToButtonHiddenSunRise:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:buttonHidenSunRise];
-//        
-//        UIButton *buttonHidenSunSet = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        buttonHidenSunSet.frame = CGRectMake(180, 400, 60, 50);
-//        [buttonHidenSunSet setTitle:@"Set" forState:UIControlStateNormal];
-//        [buttonHidenSunSet addTarget:self action:@selector(didClickToButtonHiddenSunSet:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:buttonHidenSunSet];
-//        
-//        UIButton *buttonHidenSunPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        buttonHidenSunPoint.frame = CGRectMake(110, 400, 60, 50);
-//        [buttonHidenSunPoint setTitle:@"Point" forState:UIControlStateNormal];
-//        [buttonHidenSunPoint addTarget:self action:@selector(didClickToButtonHiddenSunPoint:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:buttonHidenSunPoint];
-//        
-//        UIButton *buttonHidenAnnotation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        buttonHidenAnnotation.frame = CGRectMake(40, 400, 60, 50);
-//        [buttonHidenAnnotation setTitle:@"hidden" forState:UIControlStateNormal];
-//        [buttonHidenAnnotation addTarget:self action:@selector(didClickToButtonHiddenPoint:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:buttonHidenAnnotation];
-//        [self setupSlider];
     }
     return self;
 }
 
+
+- (void)drawLine
+{
+    CGContextRef contextCamera = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(contextCamera, [UIColor redColor].CGColor);
+    CGContextSetLineWidth(contextCamera, 2.0);
+    CGContextMoveToPoint(contextCamera, 0, 0);
+    CGContextAddLineToPoint(contextCamera, 200, 200);
+    CGContextStrokePath(contextCamera);
+    
+}
 
 -(void)didUpdatePoint:(NSNotification *)notifi{
     NSValue *value = (NSValue *)[notifi object];
@@ -108,7 +94,6 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    
     NSDate *date = [NSDate date];
     NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
     int timeZoneOffset = [destinationTimeZone secondsFromGMTForDate:date] / 3600;
@@ -120,6 +105,7 @@
         centerAnnotationView = (CenterAnnotationView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:idfr];
         if (centerAnnotationView == nil) {
             centerAnnotationView = [[CenterAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:idfr withDate:dateInput withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+            [self bringSubviewToFront:centerAnnotationView];
         }
         return centerAnnotationView;
     }
@@ -146,7 +132,34 @@
 }
 
 
-#pragma mark - Hidden.
+#pragma mark - button Hidden.
+
+- (void)setupButton
+{
+    UIButton *buttonHidenSunRise = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonHidenSunRise.frame = CGRectMake(250, 400, 60, 50);
+    [buttonHidenSunRise setTitle:@"Rise" forState:UIControlStateNormal];
+    [buttonHidenSunRise addTarget:self action:@selector(didClickToButtonHiddenSunRise:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:buttonHidenSunRise];
+    
+    UIButton *buttonHidenSunSet = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonHidenSunSet.frame = CGRectMake(180, 400, 60, 50);
+    [buttonHidenSunSet setTitle:@"Set" forState:UIControlStateNormal];
+    [buttonHidenSunSet addTarget:self action:@selector(didClickToButtonHiddenSunSet:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:buttonHidenSunSet];
+    
+    UIButton *buttonHidenSunPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonHidenSunPoint.frame = CGRectMake(110, 400, 60, 50);
+    [buttonHidenSunPoint setTitle:@"Point" forState:UIControlStateNormal];
+    [buttonHidenSunPoint addTarget:self action:@selector(didClickToButtonHiddenSunPoint:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:buttonHidenSunPoint];
+    
+    UIButton *buttonHidenAnnotation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonHidenAnnotation.frame = CGRectMake(40, 400, 60, 50);
+    [buttonHidenAnnotation setTitle:@"hidden" forState:UIControlStateNormal];
+    [buttonHidenAnnotation addTarget:self action:@selector(didClickToButtonHiddenPoint:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:buttonHidenAnnotation];
+}
 - (IBAction)didClickToButtonHiddenPoint:(id)sender
 {
     if (hiddenAnnotation == NO) {

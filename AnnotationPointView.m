@@ -18,6 +18,7 @@
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
+        self.enabled = NO;
         locationCompute = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
         self.annotationPoint = annotation;
         dateCompute = date;

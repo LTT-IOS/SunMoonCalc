@@ -16,7 +16,7 @@
 #import "YouImageView.h"
 
 @class MoonSunCalcGobal;
-@interface MapView : UIView<MKMapViewDelegate,UIGestureRecognizerDelegate>{
+@interface MapView : UIView<MKMapViewDelegate>{
     UIImageView *youPointImageView ;
     CGPoint locationPointCenter;
     CGPoint locationPointYou;

@@ -25,6 +25,9 @@
 		322B76531727F9CB004306EB /* CenterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76521727F9CB004306EB /* CenterAnnotationView.m */; };
 		322B76561727FE4C004306EB /* CenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76551727FE4C004306EB /* CenterAnnotation.m */; };
 		323BD4B81738A22000D2AA89 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323BD4B71738A22000D2AA89 /* MainViewController.m */; };
+		32504656173C90B100D838BD /* BackgroudMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32504655173C90B100D838BD /* BackgroudMapView.m */; };
+		3250465A173CABC000D838BD /* ViewMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 32504659173CABC000D838BD /* ViewMove.m */; };
+		3250465D173CAF3600D838BD /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3250465C173CAF3600D838BD /* CameraView.m */; };
 		3254B6211715DA2800DBAEAD /* MoonSunCalcGobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */; };
 		32840A3F17155BEA00DDE99B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A3E17155BEA00DDE99B /* UIKit.framework */; };
 		32840A4117155BEA00DDE99B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32840A4017155BEA00DDE99B /* Foundation.framework */; };
@@ -82,6 +85,12 @@
 		322B76551727FE4C004306EB /* CenterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAnnotation.m; sourceTree = "<group>"; };
 		323BD4B61738A22000D2AA89 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		323BD4B71738A22000D2AA89 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		32504654173C90B100D838BD /* BackgroudMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroudMapView.h; sourceTree = "<group>"; };
+		32504655173C90B100D838BD /* BackgroudMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroudMapView.m; sourceTree = "<group>"; };
+		32504658173CABC000D838BD /* ViewMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMove.h; sourceTree = "<group>"; };
+		32504659173CABC000D838BD /* ViewMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMove.m; sourceTree = "<group>"; };
+		3250465B173CAF3600D838BD /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		3250465C173CAF3600D838BD /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		3254B61F1715DA2800DBAEAD /* MoonSunCalcGobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcGobal.h; sourceTree = "<group>"; };
 		3254B6201715DA2800DBAEAD /* MoonSunCalcGobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonSunCalcGobal.m; sourceTree = "<group>"; };
 		32840A3A17155BEA00DDE99B /* MoonAndSunCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoonAndSunCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +274,12 @@
 				3284732F173263CB00E908D6 /* UIMovableLabel.m */,
 				32847330173263CB00E908D6 /* CustomSlider.h */,
 				32847331173263CB00E908D6 /* CustomSlider.m */,
+				32504654173C90B100D838BD /* BackgroudMapView.h */,
+				32504655173C90B100D838BD /* BackgroudMapView.m */,
+				32504658173CABC000D838BD /* ViewMove.h */,
+				32504659173CABC000D838BD /* ViewMove.m */,
+				3250465B173CAF3600D838BD /* CameraView.h */,
+				3250465C173CAF3600D838BD /* CameraView.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -447,6 +462,9 @@
 				32E8F035173B8EFC006C56BF /* SBJsonBase.m in Sources */,
 				32E8F036173B8EFC006C56BF /* SBJsonParser.m in Sources */,
 				32E8F037173B8EFC006C56BF /* SBJsonWriter.m in Sources */,
+				32504656173C90B100D838BD /* BackgroudMapView.m in Sources */,
+				3250465A173CABC000D838BD /* ViewMove.m in Sources */,
+				3250465D173CAF3600D838BD /* CameraView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +492,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -488,6 +507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PROVISIONING_PROFILE = "845FE741-6AC9-46B3-AF95-7A190DCC022B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -501,6 +521,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -509,6 +530,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "845FE741-6AC9-46B3-AF95-7A190DCC022B";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -518,11 +540,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoonAndSunCalc/MoonAndSunCalc-Prefix.pch";
 				INFOPLIST_FILE = "MoonAndSunCalc/MoonAndSunCalc-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7F757451-EF92-41FA-8355-A7F1D79E7760";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F757451-EF92-41FA-8355-A7F1D79E7760";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -531,11 +557,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoonAndSunCalc/MoonAndSunCalc-Prefix.pch";
 				INFOPLIST_FILE = "MoonAndSunCalc/MoonAndSunCalc-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7F757451-EF92-41FA-8355-A7F1D79E7760";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F757451-EF92-41FA-8355-A7F1D79E7760";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

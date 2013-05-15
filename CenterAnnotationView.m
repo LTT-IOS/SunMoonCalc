@@ -13,15 +13,12 @@
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
-//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didUpdateCoordinate:) name:@"UpdateCoordinate" object:nil];
-        [self setBackgroundColor:[UIColor redColor]];
-
         self.frame = CGRectMake(0, 0, 13, 26);
         image = [UIImage imageNamed:@"icon_pin_did_Click@2x.png"];
         imageCenter = [UIImage imageNamed:@"icon_pin@2x.png"];
         imageViewCenter = [[UIImageView alloc]initWithFrame:CGRectMake(1, -9, 13, 23)];
         imageViewCenter.image = imageCenter;
-        [self addSubview:imageViewCenter];
+//        [self addSubview:imageViewCenter];
     }
     return self;
 }
@@ -30,6 +27,7 @@
 {
     UITouch *aTouch = [[event allTouches]anyObject];
     CGPoint pointLocation = [aTouch locationInView:self.superview];
+    NSLog(@"toa do x = %f, y = %f",pointLocation.x,pointLocation.y);
     [self setCenter:pointLocation];
     imageViewCenter.frame = CGRectMake(1, -18, 13, 33);
     imageViewCenter.image = image;
