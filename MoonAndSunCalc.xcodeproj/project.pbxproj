@@ -10,7 +10,6 @@
 		3206FD19172635C500BF50CE /* MoonCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3206FD16172635C500BF50CE /* MoonCoordinate.m */; };
 		3206FD1A172635C500BF50CE /* MoonPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3206FD18172635C500BF50CE /* MoonPosition.m */; };
 		3211E5C51728D352006356E4 /* icon_pin_did_Click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3211E5C41728D352006356E4 /* icon_pin_did_Click@2x.png */; };
-		3211E5D41729534D006356E4 /* YouImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211E5D31729534D006356E4 /* YouImageView.m */; };
 		321253681725253A0096ABC7 /* SunCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 321253651725253A0096ABC7 /* SunCoordinate.m */; };
 		321253691725253A0096ABC7 /* SunPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 321253671725253A0096ABC7 /* SunPosition.m */; };
 		322823BC171D360700211081 /* icon_current_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322823B3171D360700211081 /* icon_current_location@2x.png */; };
@@ -25,6 +24,7 @@
 		322B76531727F9CB004306EB /* CenterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76521727F9CB004306EB /* CenterAnnotationView.m */; };
 		322B76561727FE4C004306EB /* CenterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 322B76551727FE4C004306EB /* CenterAnnotation.m */; };
 		323BD4B81738A22000D2AA89 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323BD4B71738A22000D2AA89 /* MainViewController.m */; };
+		3249B0CB17439B4800651F25 /* MoonSunCalcMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3249B0CA17439B4700651F25 /* MoonSunCalcMapView.m */; };
 		32504656173C90B100D838BD /* BackgroudMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32504655173C90B100D838BD /* BackgroudMapView.m */; };
 		3250465A173CABC000D838BD /* ViewMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 32504659173CABC000D838BD /* ViewMove.m */; };
 		3250465D173CAF3600D838BD /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3250465C173CAF3600D838BD /* CameraView.m */; };
@@ -64,8 +64,6 @@
 		3206FD17172635C500BF50CE /* MoonPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonPosition.h; sourceTree = "<group>"; };
 		3206FD18172635C500BF50CE /* MoonPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonPosition.m; sourceTree = "<group>"; };
 		3211E5C41728D352006356E4 /* icon_pin_did_Click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pin_did_Click@2x.png"; sourceTree = "<group>"; };
-		3211E5D21729534D006356E4 /* YouImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouImageView.h; sourceTree = "<group>"; };
-		3211E5D31729534D006356E4 /* YouImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouImageView.m; sourceTree = "<group>"; };
 		321253641725253A0096ABC7 /* SunCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunCoordinate.h; sourceTree = "<group>"; };
 		321253651725253A0096ABC7 /* SunCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunCoordinate.m; sourceTree = "<group>"; };
 		321253661725253A0096ABC7 /* SunPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunPosition.h; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		322B76551727FE4C004306EB /* CenterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAnnotation.m; sourceTree = "<group>"; };
 		323BD4B61738A22000D2AA89 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		323BD4B71738A22000D2AA89 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		3249B0C917439B4700651F25 /* MoonSunCalcMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonSunCalcMapView.h; sourceTree = "<group>"; };
+		3249B0CA17439B4700651F25 /* MoonSunCalcMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonSunCalcMapView.m; sourceTree = "<group>"; };
 		32504654173C90B100D838BD /* BackgroudMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroudMapView.h; sourceTree = "<group>"; };
 		32504655173C90B100D838BD /* BackgroudMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroudMapView.m; sourceTree = "<group>"; };
 		32504658173CABC000D838BD /* ViewMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMove.h; sourceTree = "<group>"; };
@@ -262,14 +262,14 @@
 		32840A6817155CB900DDE99B /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				32840A851715723A00DDE99B /* MapView.h */,
-				32840A861715723A00DDE99B /* MapView.m */,
+				3250465B173CAF3600D838BD /* CameraView.h */,
+				3250465C173CAF3600D838BD /* CameraView.m */,
+				3249B0C917439B4700651F25 /* MoonSunCalcMapView.h */,
+				3249B0CA17439B4700651F25 /* MoonSunCalcMapView.m */,
 				32840A78171567D700DDE99B /* AnnotationPointView.h */,
 				32840A79171567D700DDE99B /* AnnotationPointView.m */,
 				322B76511727F9CB004306EB /* CenterAnnotationView.h */,
 				322B76521727F9CB004306EB /* CenterAnnotationView.m */,
-				3211E5D21729534D006356E4 /* YouImageView.h */,
-				3211E5D31729534D006356E4 /* YouImageView.m */,
 				3284732E173263CB00E908D6 /* UIMovableLabel.h */,
 				3284732F173263CB00E908D6 /* UIMovableLabel.m */,
 				32847330173263CB00E908D6 /* CustomSlider.h */,
@@ -278,8 +278,8 @@
 				32504655173C90B100D838BD /* BackgroudMapView.m */,
 				32504658173CABC000D838BD /* ViewMove.h */,
 				32504659173CABC000D838BD /* ViewMove.m */,
-				3250465B173CAF3600D838BD /* CameraView.h */,
-				3250465C173CAF3600D838BD /* CameraView.m */,
+				32840A851715723A00DDE99B /* MapView.h */,
+				32840A861715723A00DDE99B /* MapView.m */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -450,7 +450,6 @@
 				3206FD1A172635C500BF50CE /* MoonPosition.m in Sources */,
 				322B76531727F9CB004306EB /* CenterAnnotationView.m in Sources */,
 				322B76561727FE4C004306EB /* CenterAnnotation.m in Sources */,
-				3211E5D41729534D006356E4 /* YouImageView.m in Sources */,
 				32847332173263CB00E908D6 /* UIMovableLabel.m in Sources */,
 				32847333173263CB00E908D6 /* CustomSlider.m in Sources */,
 				323BD4B81738A22000D2AA89 /* MainViewController.m in Sources */,
@@ -465,6 +464,7 @@
 				32504656173C90B100D838BD /* BackgroudMapView.m in Sources */,
 				3250465A173CABC000D838BD /* ViewMove.m in Sources */,
 				3250465D173CAF3600D838BD /* CameraView.m in Sources */,
+				3249B0CB17439B4800651F25 /* MoonSunCalcMapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

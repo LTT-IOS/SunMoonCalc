@@ -55,44 +55,45 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    MovePointYou = YES;
-    if (isMoveCenter == NO) {
-        UITouch *touch = [[event allTouches] anyObject];
-        CGPoint location = [touch locationInView:self];
-        locationPointYou = location;
-        cameraView.center = location;
-        cameraView.hidden = NO;
-        isFist = YES;
-    }
-    else
-    {
-        isMoveCenter = NO;
-
-    }
-    if (isFist == YES) {
-        [self setNeedsDisplay];
-
-    }
+    NSLog(@"test touche end");
+//    MovePointYou = YES;
+//    if (isMoveCenter == NO) {
+//        UITouch *touch = [[event allTouches] anyObject];
+//        CGPoint location = [touch locationInView:self];
+//        locationPointYou = location;
+//        cameraView.center = location;
+//        cameraView.hidden = NO;
+//        isFist = YES;
+//    }
+//    else
+//    {
+//        isMoveCenter = NO;
+//
+//    }
+//    if (isFist == YES) {
+//        [self setNeedsDisplay];
+//
+//    }
 }
 
--(void)didUpdatePoint:(NSNotification *)notifi{
-    isMoveCenter = YES;
-    NSValue *value = (NSValue *)[notifi object];
-    CGPoint point = [value CGPointValue];
-    locationPointCenter = point;
-    MovePointYou = YES;
-
-    if (isFist == YES) {
-        [self setNeedsDisplay];
-    }
-
-
-}
--(void)didUpdatePointCamera:(NSNotification *)notifi{
-    NSValue *value = (NSValue *)[notifi object];
-    CGPoint point = [value CGPointValue];
-    locationPointYou = point;
-    MovePointYou = YES;
-    [self setNeedsDisplay];
-}
+//-(void)didUpdatePoint:(NSNotification *)notifi{
+//    isMoveCenter = YES;
+//    NSValue *value = (NSValue *)[notifi object];
+//    CGPoint point = [value CGPointValue];
+//    locationPointCenter = point;
+//    MovePointYou = YES;
+//
+//    if (isFist == YES) {
+//        [self setNeedsDisplay];
+//    }
+//
+//
+//}
+//-(void)didUpdatePointCamera:(NSNotification *)notifi{
+//    NSValue *value = (NSValue *)[notifi object];
+//    CGPoint point = [value CGPointValue];
+//    locationPointYou = point;
+//    MovePointYou = YES;
+//    [self setNeedsDisplay];
+//}
 @end

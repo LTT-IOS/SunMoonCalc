@@ -34,23 +34,21 @@
         [mapViewController setShowsUserLocation:YES];
         [self addSubview:self.mapViewController];
         
-        imageViewYou = [[YouImageView alloc]initWithFrame:CGRectMake(0 , 0, 25, 32)];
-        [self addSubview:imageViewYou];
-        imageViewYou.hidden = YES;
         
-        BackgroudMapView *backgroundView = [[BackgroudMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
-        [self addSubview:backgroundView];
+//        BackgroudMapView *backgroundView = [[BackgroudMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+//        backgroundView.opaque = NO;
+//        [self addSubview:backgroundView];
 
         [self addPointAnnotation:userLocation.coordinate.latitude withLongitude:userLocation.coordinate.longitude];
-        [self drawLine];
         
     }
     return self;
 }
 
 
-- (void)drawLine
+- (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
     CGContextRef contextCamera = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(contextCamera, [UIColor redColor].CGColor);
     CGContextSetLineWidth(contextCamera, 2.0);

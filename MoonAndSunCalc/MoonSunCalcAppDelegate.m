@@ -22,7 +22,7 @@
     // Override point for customization after application launch.
     self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     self.navigation = [[UINavigationController alloc]initWithRootViewController:self.viewController];
-    self.window.rootViewController = self.navigation;
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

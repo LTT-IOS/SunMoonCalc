@@ -23,21 +23,12 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *aTouch = [[event allTouches]anyObject];
     CGPoint pointLocation = [aTouch locationInView:self.superview];
     [self setCenter:pointLocation];
-    CGPoint location = [aTouch locationInView:self.window];
+    CGPoint location = [aTouch locationInView:self.superview];
     CGPoint point;
     point.x = location.x;
     point.y = location.y - 20;
