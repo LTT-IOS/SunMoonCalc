@@ -13,7 +13,7 @@
 -(id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier withDate:(NSDate *)date withLatitude:(double)lat withLongitude:(double)lng {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor blueColor];
         self.frame = CGRectMake(0, 0, 36, 56);
         image = [UIImage imageNamed:@"icon_pin_did_Click@2x.png"];
         imageCenter = [UIImage imageNamed:@"icon_pin@2x.png"];

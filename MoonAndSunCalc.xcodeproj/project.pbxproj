@@ -54,6 +54,8 @@
 		32E8F035173B8EFC006C56BF /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F02D173B8EFC006C56BF /* SBJsonBase.m */; };
 		32E8F036173B8EFC006C56BF /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F02F173B8EFC006C56BF /* SBJsonParser.m */; };
 		32E8F037173B8EFC006C56BF /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8F031173B8EFC006C56BF /* SBJsonWriter.m */; };
+		32F503A41745C85800DCD84A /* YouAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F503A31745C85800DCD84A /* YouAnnotationView.m */; };
+		32F503A71745C8B400DCD84A /* YouAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F503A61745C8B400DCD84A /* YouAnnotation.m */; };
 		32F5318E1739F41C0077092F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F5318D1739F41C0077092F /* MainViewController.xib */; };
 		32FE4DDF171E36AB006E8A05 /* ShareLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FE4DDE171E36AB006E8A05 /* ShareLocation.m */; };
 /* End PBXBuildFile section */
@@ -137,6 +139,10 @@
 		32E8F02F173B8EFC006C56BF /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		32E8F030173B8EFC006C56BF /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		32E8F031173B8EFC006C56BF /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		32F503A21745C85800DCD84A /* YouAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouAnnotationView.h; sourceTree = "<group>"; };
+		32F503A31745C85800DCD84A /* YouAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouAnnotationView.m; sourceTree = "<group>"; };
+		32F503A51745C8B400DCD84A /* YouAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouAnnotation.h; sourceTree = "<group>"; };
+		32F503A61745C8B400DCD84A /* YouAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouAnnotation.m; sourceTree = "<group>"; };
 		32F5318D1739F41C0077092F /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		32FE4DDD171E36AB006E8A05 /* ShareLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareLocation.h; sourceTree = "<group>"; };
 		32FE4DDE171E36AB006E8A05 /* ShareLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareLocation.m; sourceTree = "<group>"; };
@@ -255,6 +261,8 @@
 				32840A761715649100DDE99B /* AnnotationPoint.m */,
 				322B76541727FE4C004306EB /* CenterAnnotation.h */,
 				322B76551727FE4C004306EB /* CenterAnnotation.m */,
+				32F503A51745C8B400DCD84A /* YouAnnotation.h */,
+				32F503A61745C8B400DCD84A /* YouAnnotation.m */,
 			);
 			name = "Entity Model";
 			sourceTree = "<group>";
@@ -270,6 +278,8 @@
 				32840A79171567D700DDE99B /* AnnotationPointView.m */,
 				322B76511727F9CB004306EB /* CenterAnnotationView.h */,
 				322B76521727F9CB004306EB /* CenterAnnotationView.m */,
+				32F503A21745C85800DCD84A /* YouAnnotationView.h */,
+				32F503A31745C85800DCD84A /* YouAnnotationView.m */,
 				3284732E173263CB00E908D6 /* UIMovableLabel.h */,
 				3284732F173263CB00E908D6 /* UIMovableLabel.m */,
 				32847330173263CB00E908D6 /* CustomSlider.h */,
@@ -465,6 +475,8 @@
 				3250465A173CABC000D838BD /* ViewMove.m in Sources */,
 				3250465D173CAF3600D838BD /* CameraView.m in Sources */,
 				3249B0CB17439B4800651F25 /* MoonSunCalcMapView.m in Sources */,
+				32F503A41745C85800DCD84A /* YouAnnotationView.m in Sources */,
+				32F503A71745C8B400DCD84A /* YouAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

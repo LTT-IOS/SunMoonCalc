@@ -17,6 +17,8 @@
 #import "CenterAnnotation.h"
 #import "MoonSunCalcMapView.h"
 #import "CameraView.h"
+#import "YouAnnotation.h"
+#import "YouAnnotationView.h"
 @interface MainViewController : UIViewController<CustomSliderDelegate,UISearchBarDelegate,MKMapViewDelegate>
 {
     NSDateFormatter *dateFormatter;
@@ -31,12 +33,17 @@
     CameraView *imageViewYou;
     AnnotationPointView *annotationView;
     CenterAnnotation *centerAnnotation;
+    YouAnnotation *youAnnotation;
+    YouAnnotationView *youAnnotationView;
     BOOL hiddenAnnotation;
     CLLocationCoordinate2D coordinate2D;
     CLLocationCoordinate2D coorYou;
     CLLocationCoordinate2D coorCenter;
     MKPolyline *line;
     CLLocationCoordinate2D *plotLocation;
+    CameraView *cameraView;
+    BOOL isMoveCenter;
+    BOOL isFistTouches;
     
 }
 @property(nonatomic, strong) CustomSlider *dateSlider;

@@ -55,6 +55,7 @@
 {
     return UIInterfaceOrientationPortrait;
 }
+
 # pragma mark - SearchBar
 - (void)setUpSearchBar
 {
@@ -177,6 +178,7 @@
 #pragma mark - Mapview
 - (void)setUpMapView
 {
+
     userLocation = [[CLLocation alloc]init];
     userLocation = [[ShareLocation shareMyInstance] getOldLocation];
     coorCenter = userLocation.coordinate;
@@ -205,6 +207,11 @@
     plotLocation[1] = coorCenter;
     line = [[MKPolyline alloc]init];
     line = [MKPolyline polylineWithCoordinates:plotLocation count:2];
+    cameraView = [[CameraView alloc]initWithFrame:CGRectMake(0, 0, 37, 48)];
+//    [self.view addSubview:cameraView];
+    cameraView.hidden = YES;
+    isMoveCenter = NO;
+    isFistTouches = NO;
 
 }
 
@@ -226,8 +233,12 @@
     [self.mapViewController setRegion:region animated:YES];
     centerAnnotation = [[CenterAnnotation alloc]initWithName:@"center" coordinate:coord];
     annotationPoint = [[AnnotationPoint alloc]initWithName:@"i'm here" coordinate:coord];
+    youAnnotation = [[YouAnnotation alloc]initWithName:@"you" coordinate:coord];
     [self.mapViewController addAnnotation:centerAnnotation];
+    [self.mapViewController addAnnotation:youAnnotation];
+
     [self.mapViewController addAnnotation:annotationPoint];
+    [[self.mapViewController viewForAnnotation:youAnnotation] setHidden:YES];
 }
 
 - (void)plotRouteOnMap: (CLLocationCoordinate2D )lastLocation atCurrent2DLocation: (CLLocationCoordinate2D )currentLocation {
@@ -242,9 +253,9 @@
     if([overlay isKindOfClass:[MKPolyline class]])
     {
         MKPolylineView *lineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-        lineView.lineWidth = 1.5;
+        lineView.lineWidth = 2;
         lineView.strokeColor = [UIColor redColor];
-        lineView.fillColor = [UIColor redColor];
+        lineView.fillColor = [UIColor clearColor];
         return lineView;
     }
     return nil;
@@ -278,11 +289,24 @@
         }
         return annotationView;
     }
+    
+    youAnnotationView = nil;
+    if ([annotation isKindOfClass:[YouAnnotation class]]) {
+        static NSString *identifier = @"YouAnnotationView";
+        youAnnotationView = (YouAnnotationView *)[self.mapViewController dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (youAnnotationView == nil) {
+            
+            youAnnotationView = [[YouAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:identifier withLatitude:coordinate2D.latitude withLongitude:coordinate2D.longitude];
+        }
+        return youAnnotationView;
+    }
     return nil;
 }
 
 
 -(void)didUpdatePoint:(NSNotification *)notifi{
+    isMoveCenter = YES;
+    
     NSValue *value = (NSValue *)[notifi object];
     CGPoint point = [value CGPointValue];
     CLLocationCoordinate2D coord2 = [self.mapViewController convertPoint:point toCoordinateFromView:self.mapViewController];
@@ -290,22 +314,42 @@
     centerAnnotation.coordinate = coord2;
     coordinate2D = coord2;
     coorCenter = coord2;
+    plotLocation[0] = coorYou;
+    plotLocation[1] = coorCenter;
+    line = [MKPolyline polylineWithCoordinates:plotLocation count:2];
+
+    if (isFistTouches ==  YES) {
+        [self.mapViewController removeOverlays:self.mapViewController.overlays];
+        [self plotRouteOnMap:coorYou atCurrent2DLocation:coorCenter];
+    }
+
     CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:coord2.latitude longitude:coord2.longitude];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"UpdateCoordinate" object:newLocation];
 }
 
 -(void)didUpdatePointYou:(NSNotification *)notifi{
-    [self.mapViewController removeOverlays:self.mapViewController.overlays];
-    NSValue *value = (NSValue *)[notifi object];
-    CGPoint point = [value CGPointValue];
-    CLLocationCoordinate2D coord2 = [self.mapViewController convertPoint:point toCoordinateFromView:self.mapViewController];
-    coorYou = coord2;
-    plotLocation[0] = coorYou;
-    plotLocation[1] = coorCenter;
-    line = [MKPolyline polylineWithCoordinates:plotLocation count:2];
+    if (isMoveCenter == NO) {
+        [self.mapViewController removeOverlays:self.mapViewController.overlays];
+        NSValue *value = (NSValue *)[notifi object];
+        CGPoint point = [value CGPointValue];
+        CLLocationCoordinate2D coord2 = [self.mapViewController convertPoint:point toCoordinateFromView:self.mapViewController];
+        cameraView.center = point;
+        cameraView.hidden = NO;
+        coorYou = coord2;
+        youAnnotation.coordinate = coord2;
+        [[self.mapViewController viewForAnnotation:youAnnotation] setHidden:NO];
+        plotLocation[0] = coorYou;
+        plotLocation[1] = coorCenter;
+        
+        line = [MKPolyline polylineWithCoordinates:plotLocation count:2];
+        
+        [self plotRouteOnMap:coorYou atCurrent2DLocation:coorCenter];
+        isFistTouches = YES;
 
-    [self plotRouteOnMap:coorYou atCurrent2DLocation:coorCenter];
-
+    }
+    else{
+        isMoveCenter = NO;
+    }
 }
 
 -(void)didUpdatePointCamera:(NSNotification *)notifi{
@@ -320,8 +364,8 @@
     [self.mapViewController removeOverlay:line];
 
     [self plotRouteOnMap:coorYou atCurrent2DLocation:coorCenter];
-
 }
+
 -(void)didUpdateLocation:(NSNotification *)notification {
     CLLocation *newLocation = (CLLocation *)[notification object];
     userLocation = nil;
